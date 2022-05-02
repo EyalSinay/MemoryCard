@@ -75,6 +75,9 @@
     transition-property: background-color;
     transition: 0.5s;
 }
+#start-page-form input[type="radio"]:checked+label:hover {
+    opacity: 0.5;
+}
 
 #start-page-form input[type="radio"]:not(:checked)+label {
     background-color: gray;
