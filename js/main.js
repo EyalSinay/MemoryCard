@@ -320,9 +320,21 @@ const objCards = {
     },
 }
 
-const cardsArr = createMatrix(5, 4);
+function createMatrix(numOfCards) {
 
-function createMatrix(columns, rows) {
+    let rows;
+    let columns;
+    if (numOfCards == 12) {
+        rows = 4;
+        columns = 3;
+    } else if (numOfCards == 18) {
+        rows = 6;
+        columns = 3;
+    } else if (numOfCards == 24) {
+        rows = 6;
+        columns = 4;
+    }
+
     document.documentElement.style.setProperty("--columns", columns);
     document.documentElement.style.setProperty("--rows", rows);
 
@@ -336,6 +348,8 @@ function createMatrix(columns, rows) {
 }
 
 function getRandomArrMatrix(arr) {
+
+    // ! fix
     const idOfCards = objCards.getIdOfCards();
     idOfCards.push(...idOfCards);
     for (let i = 0; i < arr.length; i++) {
@@ -348,7 +362,16 @@ function getRandomArrMatrix(arr) {
     return arr;
 }
 
-console.log(getRandomArrMatrix(cardsArr));
+
+function getUserChoices(e) {
+    const inputsFormCollection = e.target.querySelectorAll('#start-page-form input');
+    const inputsFormElementsTruth = [...inputsFormCollection].filter(option => option.checked === true);
+    const userChoicesObj = {};
+    inputsFormElementsTruth.forEach(element => {
+        userChoicesObj[element.name] = element.value;
+    });
+    return userChoicesObj;
+}
 
 
 // start page:
@@ -356,34 +379,19 @@ const form = document.querySelector('#start-page-form');
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-
-    e.target
-    // get user choices
-    // amount of cards:
-    const numOfCardsCollection = e.target.querySelectorAll('#num-of-cards-container input');
-    const numOfCardsElement = [...numOfCardsCollection].find(option => option.checked === true);
-
-    // amount of players:
-    const numOfPlayersCollection = e.target.querySelectorAll('#num-of-players-container input');
-    const numOfPlayersElement = [...numOfPlayersCollection].find(option => option.checked === true);
-
-    // cards style:
-    const cardsStyleCollection = e.target.querySelectorAll('#cards-style-container input');
-    const cardsStyleElement = [...cardsStyleCollection].find(option => option.checked === true);
-
-    // object to return:
-    const userChoicesObj = {
-        numOfCards: numOfCardsElement.value,
-        numOfPlayers: numOfPlayersElement.value,
-        cardsStyle: cardsStyleElement.value,
-    }
+    const userChoicesObj = getUserChoices(e);
     console.log(userChoicesObj);
 
+    const arrEmpty = createMatrix(userChoicesObj['num-of-cards']);
+    console.log(arrEmpty);
+
+    const matrixCardsNumbers =  getRandomArrMatrix(arrEmpty);
+    console.log(matrixCardsNumbers);
 
     // display-none start page with animation:
     const startPageMainContainer = document.querySelector('.start-page-main-container');
     startPageMainContainer.addEventListener('animationend', e => {
-        e.target.setAttribute('data-display', 'false')
+        e.target.setAttribute('data-display', 'false');
     }, { once: true });
     startPageMainContainer.setAttribute('animation', 'rotate_scale_opacity-out');
 
