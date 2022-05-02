@@ -324,15 +324,15 @@ function createMatrix(numOfCards) {
 
     let rows;
     let columns;
-    if (numOfCards == 12) {
-        rows = 4;
-        columns = 3;
-    } else if (numOfCards == 18) {
-        rows = 6;
-        columns = 3;
-    } else if (numOfCards == 24) {
-        rows = 6;
+    if (numOfCards === 12) {
+        rows = 3;
         columns = 4;
+    } else if (numOfCards === 18) {
+        rows = 3;
+        columns = 6;
+    } else if (numOfCards === 24) {
+        rows = 4;
+        columns = 6;
     }
 
     document.documentElement.style.setProperty("--columns", columns);
@@ -347,10 +347,12 @@ function createMatrix(numOfCards) {
     return emptyCardsArr;
 }
 
-function getRandomArrMatrix(arr) {
+function getRandomArrMatrix(arr, numOfCards) {
 
-    // ! fix
-    const idOfCards = objCards.getIdOfCards();
+    const halfNumOfCards = numOfCards / 2;
+    const allIdOfCards = objCards.getIdOfCards();
+    let randomNum = Math.floor(Math.random() * (allIdOfCards.length - halfNumOfCards));
+    const idOfCards = allIdOfCards.splice(randomNum, halfNumOfCards);
     idOfCards.push(...idOfCards);
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].length; j++) {
@@ -368,7 +370,11 @@ function getUserChoices(e) {
     const inputsFormElementsTruth = [...inputsFormCollection].filter(option => option.checked === true);
     const userChoicesObj = {};
     inputsFormElementsTruth.forEach(element => {
-        userChoicesObj[element.name] = element.value;
+        let val = element.value;
+        if (typeof val === 'string') {
+            val = parseInt(val, 10);
+        }
+        userChoicesObj[element.name] = val;
     });
     return userChoicesObj;
 }
@@ -385,8 +391,9 @@ form.addEventListener('submit', e => {
     const arrEmpty = createMatrix(userChoicesObj['num-of-cards']);
     console.log(arrEmpty);
 
-    const matrixCardsNumbers =  getRandomArrMatrix(arrEmpty);
+    const matrixCardsNumbers = getRandomArrMatrix(arrEmpty, userChoicesObj['num-of-cards']);
     console.log(matrixCardsNumbers);
+
 
     // display-none start page with animation:
     const startPageMainContainer = document.querySelector('.start-page-main-container');
