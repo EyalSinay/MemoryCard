@@ -3,6 +3,13 @@
     --rows: 0;
 }
 
+[data-display="true"]{
+    display: grid;
+}
+[data-display="false"]{
+    display: none;
+}
+
 body {
     margin: 0;
     padding: 0;

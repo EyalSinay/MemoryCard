@@ -1,0 +1,134 @@
+.start-page-main-container {
+    height: 99vh;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url(../assests/images/start-page-background-giphy.gif);
+    /* background-image: url(../assests/images/pexels-erik-mclean-6152927.jpg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    text-align: center;
+}
+
+.start-page-sub-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    padding: 6vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: azure;
+}
+
+.start-page-title h1 {
+    font-size: 4vh;
+    margin: 2vh;
+}
+
+.input-title {
+    margin-top: 2vh;
+    margin-bottom: 0;
+}
+
+#start-page-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition-property: transition;
+    transition: 0.5s;
+}
+
+.input-radio:hover {
+    transform: scale(1.1);
+}
+
+#start-page-form input[type="radio"] {
+    visibility: hidden;
+}
+
+#start-page-form input[type="radio"]+label {
+    cursor: pointer;
+    padding: 2vh;
+    margin: 2vh;
+    border-radius: 2vh;
+    box-shadow: rgba(240, 255, 255, 0.2) 0px 7px 29px 0px;
+}
+
+#start-page-form input[type="radio"]:checked+label {
+    color: black;
+    background-color: yellow;
+    transition-property: background-color;
+    transition: 0.5s;
+}
+
+#start-page-form input[type="radio"]:not(:checked)+label {
+    background-color: gray;
+    transition-property: background-color;
+    transition: 0.5s;
+}
+
+#start-page-form input[type="radio"]:not(:checked)+label:hover {
+    background-color: greenyellow;
+    color: black;
+}
+
+#start-game{
+    cursor: pointer;
+    padding: 2vh;
+    margin-top: 8vh;
+    border-radius: 2vh;
+    background-color: green;
+    color: azure;
+    box-shadow: rgba(240, 255, 255, 0.2) 0px 7px 29px 0px;
+    transition: 0.5s;
+}
+
+#start-game:hover{
+    transform: scale(1.1);
+    background-color: yellowgreen;
+    color: black;
+}
+
+
+@media(max-width: 510px){
+    .start-page-sub-container {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 0;
+        padding: 0;
+        height: 99vh;
+        width: 100vw;
+    }
+
+    .input-title {
+        margin-top: 4vh;
+        margin-bottom: 0;
+    }
+    
+    #start-page-form input[type="radio"]+label {
+        padding: 0.5vh;
+        margin: 0;
+        border-radius: 1vh;
+        font-size: 4vw;
+    }
+    
+    #start-game{
+        padding: 2vh;
+        margin-top: 4vh;
+        border-radius: 1vh;
+    }
+}
