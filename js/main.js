@@ -356,6 +356,8 @@ const form = document.querySelector('#start-page-form');
 form.addEventListener('submit', e => {
     e.preventDefault();
 
+
+    e.target
     // get user choices
     // amount of cards:
     const numOfCardsCollection = e.target.querySelectorAll('#num-of-cards-container input');
@@ -376,11 +378,18 @@ form.addEventListener('submit', e => {
         cardsStyle: cardsStyleElement.value,
     }
     console.log(userChoicesObj);
-    
 
-    // display the game
+
+    // display-none start page with animation:
     const startPageMainContainer = document.querySelector('.start-page-main-container');
+    startPageMainContainer.addEventListener('animationend', e => {
+        e.target.setAttribute('data-display', 'false')
+    }, { once: true });
+    startPageMainContainer.setAttribute('animation', 'rotate_scale_opacity-out');
+
+    // display-grid game page with animation:
     const gameContainer = document.querySelector('.game-container');
-    startPageMainContainer.setAttribute('data-display', 'false');
     gameContainer.setAttribute('data-display', 'true');
+    gameContainer.setAttribute('animation', 'rotate_scale_opacity-in');
+
 });
