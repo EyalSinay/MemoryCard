@@ -349,3 +349,39 @@ function getRandomArrMatrix(arr) {
 }
 
 console.log(getRandomArrMatrix(cardsArr));
+
+
+// start page:
+const form = document.querySelector('#start-page-form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    
+    // get user choices
+    // amount of cards:
+    const numOfCardsCollection = e.target.querySelectorAll('#num-of-cards-container input');
+    const numOfCardsElement = [...numOfCardsCollection].find(option => option.checked === true);
+    const numOfCards = numOfCardsElement.value;
+    console.log(numOfCards);
+
+    // amount of players:
+    const numOfPlayersCollection = e.target.querySelectorAll('#num-of-players-container input');
+    const numOfPlayersElement = [...numOfPlayersCollection].find(option => option.checked === true);
+    const numOfPlayers = numOfPlayersElement.value;
+    console.log(numOfPlayers);
+
+    // cards style:
+    const cardsStyleCollection = e.target.querySelectorAll('#cards-style-container input');
+    const cardsStyleElement = [...cardsStyleCollection].find(option => option.checked === true);
+    const cardsStyle = cardsStyleElement.value;
+    console.log(cardsStyle);
+    
+
+    // display the game
+    const startPageMainContainer = document.querySelector('.start-page-main-container');
+    const gameContainer = document.querySelector('.game-container');
+    startPageMainContainer.setAttribute('data-display', 'false');
+    gameContainer.setAttribute('data-display', 'true');
+
+
+})
