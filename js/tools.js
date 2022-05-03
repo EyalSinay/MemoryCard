@@ -42,35 +42,35 @@ export function shuffleArray(arr) {
     
 
 
-function handleCardClick(card){
-    card.setAttribute("data-open", true);
-    if (!statusObj.open){
-        statusObj.open = true;
-    statusObj.currentCard = card.getAttribute("data-pairNum");
-    // console.log(statusObj);
-} else {
+// function handleCardClick(card){
+//     card.setAttribute("data-open", true);
+//     if (!statusObj.open){
+//         statusObj.open = true;
+//     statusObj.currentCard = card.getAttribute("data-pairNum");
+//     // console.log(statusObj);
+// } else {
    
-    checkMatch(card);
-}
+//     checkMatch(card);
+// }
 
-}
+// }
 
-function checkMatch(card){
+// function checkMatch(card){
 
-    if (card.getAttribute("data-pairNum") === statusObj.currentCard){
-        statusObj.score++;
-       const allOpen = document.querySelectorAll("[data-open='true']");
-//! ADD DELAY HERE //
-       allOpen.forEach((e)=>{
-           e.style.visibility = "hidden";
-        })
-        statusObj.open = false;
+//     if (card.getAttribute("data-pairNum") === statusObj.currentCard){
+//         statusObj.score++;
+//        const allOpen = document.querySelectorAll("[data-open='true']");
+// //! ADD DELAY HERE //
+//        allOpen.forEach((e)=>{
+//            e.style.visibility = "hidden";
+//         })
+//         statusObj.open = false;
        
-    //     console.log(statusObj);
-    } else{
+//     //     console.log(statusObj);
+//     } else{
         
-    }
-}
+//     }
+// }
 
 
 
