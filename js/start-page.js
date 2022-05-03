@@ -6,71 +6,49 @@ function getUserChoices(e) {
     const inputsFormElementsTruth = [...inputsFormCollection].filter(option => option.checked === true);
     const userChoicesObj = {};
     inputsFormElementsTruth.forEach(element => {
-        let val = element.value;
-        if (typeof val === 'string') {
-            val = parseInt(val, 10);
-        }
-        userChoicesObj[element.name] = val;
+        userChoicesObj[element.name] = element.value;
     });
     return userChoicesObj;
 }
 
-function createMatrix(numOfCards) {
+
+function setGridPropertyByNumOfCards(numOfCards) {
     let rows;
     let columns;
-    if (numOfCards === 12) {
+    if (numOfCards === '12') {
         rows = 3;
         columns = 4;
-    } else if (numOfCards === 18) {
+    } else if (numOfCards === '18') {
         rows = 3;
         columns = 6;
-    } else if (numOfCards === 24) {
+    } else if (numOfCards === '24') {
         rows = 4;
         columns = 6;
     }
-
-    const emptyCardsArr = [];
-    const columnsArr = new Array(columns);
-    for (let i = 0; i < rows; i++) {
-        emptyCardsArr.push([...columnsArr]);
-    }
-
-    // set whe greed property:
     document.documentElement.style.setProperty('--columns', columns);
     document.documentElement.style.setProperty('--rows', rows);
-
-    return emptyCardsArr;
 }
 
 
-function getRandomArrMatrix(arr, numOfCards) {
-    const idOfCards = objCards.getIdOfCards();
-
+function getRandomArrIdByNumOfCards(numOfCards) {
+    const idOfCards = objCards.getIdOfCardsArr();
     shuffleArray(idOfCards);
-
     idOfCards.splice(0, idOfCards.length - numOfCards/2);
     idOfCards.push(...idOfCards);
-
     shuffleArray(idOfCards);
-
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr[i].length; j++) {
-            arr[i][j] = idOfCards[0];
-            idOfCards.shift();
-        }
-    }
-    return arr;
+    return idOfCards;
 }
 
 
 //* creates HTML elements based on received grid and chosen image set.
-function createElements (grid, imageSet) {
+function createElementsByArrAndCardsStyle (arr, cardsStyle) {
+    const backgroundSrc = objCards.getImagBackgroundSrcByCardStyle(cardsStyle)
     const board = document.querySelector("#gameBoard");
-    for (let i = 0; i < grid.length; i++){
-        let rand = Math.floor(Math.random()*objCards.length);
+    for (let i = 0; i < arr.length; i++){
         const card = document.createElement("img");
-        card.setAttribute("data-pairNum", grid[i]);
-        card.setAttribute("src", objCards.cards[`card${grid[i]}`][`image${imageSet}`]);
+        card.setAttribute("data-pairNum", arr[i]);
+        card.setAttribute("src", backgroundSrc);
+        card.style.width = '100%';
         card.setAttribute("data-open", "false");
         card.addEventListener('click', ()=>handleCardClick(card)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         board.appendChild(card);
@@ -84,14 +62,12 @@ export function submitEventListener(e) {
     const userChoicesObj = getUserChoices(e);
     console.log(userChoicesObj);
 
-    const arrEmpty = createMatrix(userChoicesObj["num-of-cards"]);
-    console.log(arrEmpty);
+    setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
 
-    const matrixCardsNumbers = getRandomArrMatrix(arrEmpty, userChoicesObj['num-of-cards']);
+    const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj['num-of-cards']);
     console.log(matrixCardsNumbers);
     
-
-    //* createElements()   /////
+    createElementsByArrAndCardsStyle(matrixCardsNumbers, userChoicesObj["cards-style"]);
 
     // display-none start page with animation:
     const startPageMainContainer = document.querySelector('.start-page-main-container');
