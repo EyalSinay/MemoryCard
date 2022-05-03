@@ -3,7 +3,7 @@
   --rows: 0;
 }
 
-#game-board {
+#gameBoard {
   display: grid;
   grid-template-columns: repeat(var(--columns), 5vw);
   grid-template-rows: repeat(var(--rows), 10vw);
