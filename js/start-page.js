@@ -16,7 +16,7 @@ function getUserChoices(e) {
     return userChoicesObj;
 }
 
-
+// exempl
 function setGridPropertyByNumOfCards(numOfCards) {
     let rows;
     let columns;
