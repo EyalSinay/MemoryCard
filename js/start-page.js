@@ -62,6 +62,21 @@ function getRandomArrMatrix(arr, numOfCards) {
     return arr;
 }
 
+//* creates HTML elements based on recieved grid and chosen image set.
+
+function createElements (grid, imageSet) {
+    const board = document.querySelector("#gameBoard");
+    for (let i = 0; i < grid.length; i++){
+        let rand = Math.floor(Math.random()*objCards.length);
+        const card = document.createElement("img");
+        card.setAttribute("data-pairNum", grid[i]);
+        card.setAttribute("src", objCards.cards[`card${grid[i]}`][`image${imageSet}`]);
+        card.setAttribute("data-open", "false");
+        card.addEventListener('click', ()=>handleCardClick(card)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        board.appendChild(card);
+    }
+}
+
 
 export function submitEventListener(e) {
     e.preventDefault();
@@ -74,7 +89,9 @@ export function submitEventListener(e) {
 
     const matrixCardsNumbers = getRandomArrMatrix(arrEmpty, userChoicesObj['num-of-cards']);
     console.log(matrixCardsNumbers);
+    
 
+    //* createElements()   /////
 
     // display-none start page with animation:
     const startPageMainContainer = document.querySelector('.start-page-main-container');
