@@ -180,7 +180,35 @@ h1 {
   width: 7rem;
   text-align: center;
 }
+.winningCount[data-addPoint="true"] {
+  background-color: green;
+}
+.turnOverCount[data-addPoint="true"] {
+  background-color: red;
+}
+.winningCount[data-addPoint="true"],
+.turnOverCount[data-addPoint="true"] {
+  animation-name: movingBox;
 
+  animation-duration: 1300ms;
+
+  animation-iteration-count: infinite;
+
+  animation-direction: alternate;
+}
+
+@keyframes movingBox {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-50px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
 .clockImg {
   background: rgb(78, 24, 24) url("/assests/imgGame/clock.png") no-repeat center
     center/contain;
@@ -207,6 +235,7 @@ h1 {
   height: 5rem;
   border: 5px solid rgb(223, 91, 10);
   border-radius: 10%;
+  cursor: pointer;
 }
 .restartBtn {
   background: rgb(78, 24, 24) url("/assests/imgGame/restart-btn.png") no-repeat
