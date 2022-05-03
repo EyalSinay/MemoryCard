@@ -3,8 +3,7 @@ import { objCards } from './obj_cards.js';
 import { shuffleArray } from './tools.js';
 import { handleCardClick } from './game.js';
 
-import {handleCardClick} from './game.js';
-import {statusObj} from './game.js';
+import { statusObj } from './game.js';
 
 
 function getUserChoices(e) {
@@ -39,7 +38,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
 function getRandomArrIdByNumOfCards(numOfCards) {
     const idOfCards = objCards.getIdOfCardsArr();
     shuffleArray(idOfCards);
-    idOfCards.splice(0, idOfCards.length - numOfCards/2);
+    idOfCards.splice(0, idOfCards.length - numOfCards / 2);
     idOfCards.push(...idOfCards);
     shuffleArray(idOfCards);
     return idOfCards;
@@ -47,10 +46,10 @@ function getRandomArrIdByNumOfCards(numOfCards) {
 
 
 //* creates HTML elements based on received grid and chosen image set.
-function createElementsByArrAndCardsStyle (arr, cardsStyle) {
+function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     const backgroundSrc = objCards.backgroundCards[cardsStyle]; // get imag background src by card style
     const board = document.querySelector("#gameBoard");
-    for (let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         // the card div
         const card = document.createElement("div");
         card.setAttribute("class", "card");
@@ -67,7 +66,7 @@ function createElementsByArrAndCardsStyle (arr, cardsStyle) {
         backCard.style.backgroundImage = `url(${backgroundSrc})`;
         card.appendChild(backCard);
 
-        card.addEventListener('click', (e)=>{
+        card.addEventListener('click', (e) => {
             /*
             const startPosition = e.target.getBoundingClientRect();
             console.log(startPosition);
@@ -98,16 +97,16 @@ function createElementsByArrAndCardsStyle (arr, cardsStyle) {
 export function submitEventListener(e) {
     e.preventDefault();
 
-    const userChoicesObj = getUserChoices(e);  
-   
-    
-   statusObj.cardStyle = userChoicesObj['cards-style'];
+    const userChoicesObj = getUserChoices(e);
+
+
+    statusObj.cardStyle = userChoicesObj['cards-style'];
 
     setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
 
     const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj['num-of-cards']);
     console.log(matrixCardsNumbers);
-    
+
     createElementsByArrAndCardsStyle(matrixCardsNumbers, userChoicesObj["cards-style"]);
 
     // display-none start page with animation:
