@@ -1,9 +1,7 @@
 
 import { objCards } from './obj_cards.js';
 import { shuffleArray } from './tools.js';
-import { handleCardClick } from './game.js';
-
-import { statusObj } from './game.js';
+import { handleCardClick, statusObj } from './game.js';
 
 
 function getUserChoices(e) {
@@ -16,7 +14,7 @@ function getUserChoices(e) {
     return userChoicesObj;
 }
 
-// exempl
+
 function setGridPropertyByNumOfCards(numOfCards) {
     let rows;
     let columns;
@@ -54,7 +52,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
         const card = document.createElement("div");
         card.setAttribute("class", "card");
         card.setAttribute("data-pairNum", arr[i]);
-        card.setAttribute("data-open", "false");  // ! back to false!
+        card.setAttribute("data-open", "false");
         // the front card
         const frontCard = document.createElement("div");
         frontCard.setAttribute("class", "front_card");
@@ -67,10 +65,11 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
         card.appendChild(backCard);
 
         card.addEventListener('click', (e) => {
+            
             /*
             const startPosition = e.target.getBoundingClientRect();
             console.log(startPosition);
-            const imgPath = e.target.getAttribute("data-pairNum");
+            // const imgPath = e.target.getAttribute("data-pairNum");
             // const endPositionX = 0;
             // const endPositionY = 0;
             const flyCard = document.createElement('img');
@@ -79,13 +78,13 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
             flyCard.style.position = "absolute";
             flyCard.style.left = startPosition.left + "px";
             flyCard.style.top = startPosition.top + "px";
-            flyCard.style.width = startPosition.left - startPosition.right + "px";
-            flyCard.style.height = startPosition.top - startPosition.bottom + "px";
-            flyCard.style.backgroundImage = getImagSrcByDataIdAndCardStyle(imgPath, cardsStyle);
+            flyCard.style.width = (startPosition.right - startPosition.left) + "px";
+            flyCard.style.height = (startPosition.bottom - startPosition.top) + "px";
+            flyCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(1, 'cardStyle1')})`;
             document.body.appendChild(flyCard);
             e.target.style.display = "none";
-
             */
+            
             handleCardClick(card);
         }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -121,5 +120,3 @@ export function submitEventListener(e) {
     gameContainer.setAttribute("data-display", "true");
     gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
 };
-
-

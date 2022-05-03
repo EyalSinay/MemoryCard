@@ -101,3 +101,22 @@
     from {transform: rotateY(180deg);}
     to {transform: rotateY(0deg);}
 }
+
+
+
+/* flay card */
+/* 
+.fly_card{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation-name: flyCard;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flyCard {
+    0% {}
+    100% {transform: translateX(100px)}
+} 
+*/
