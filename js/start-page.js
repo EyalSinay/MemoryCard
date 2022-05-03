@@ -1,9 +1,9 @@
 
 import { objCards } from './obj_cards.js';
 import { shuffleArray } from './tools.js';
+import { handleCardClick } from './game.js';
 
-import {handleCardClick} from './game.js';
-import {statusObj} from './game.js';
+import { statusObj } from './game.js';
 
 
 function getUserChoices(e) {
@@ -38,7 +38,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
 function getRandomArrIdByNumOfCards(numOfCards) {
     const idOfCards = objCards.getIdOfCardsArr();
     shuffleArray(idOfCards);
-    idOfCards.splice(0, idOfCards.length - numOfCards/2);
+    idOfCards.splice(0, idOfCards.length - numOfCards / 2);
     idOfCards.push(...idOfCards);
     shuffleArray(idOfCards);
     return idOfCards;
@@ -46,16 +46,49 @@ function getRandomArrIdByNumOfCards(numOfCards) {
 
 
 //* creates HTML elements based on received grid and chosen image set.
-function createElementsByArrAndCardsStyle (arr, cardsStyle) {
-    const backgroundSrc = objCards.getImagBackgroundSrcByCardStyle(cardsStyle)
+function createElementsByArrAndCardsStyle(arr, cardsStyle) {
+    const backgroundSrc = objCards.backgroundCards[cardsStyle]; // get imag background src by card style
     const board = document.querySelector("#gameBoard");
-    for (let i = 0; i < arr.length; i++){
-        const card = document.createElement("img");
+    for (let i = 0; i < arr.length; i++) {
+        // the card div
+        const card = document.createElement("div");
+        card.setAttribute("class", "card");
         card.setAttribute("data-pairNum", arr[i]);
-        card.setAttribute("src", backgroundSrc);
-        card.style.width = '100%';
-        card.setAttribute("data-open", "false");
-        card.addEventListener('click', ()=>handleCardClick(card)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        card.setAttribute("data-open", "false");  // ! back to false!
+        // the front card
+        const frontCard = document.createElement("div");
+        frontCard.setAttribute("class", "front_card");
+        frontCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(arr[i], cardsStyle)})`;
+        card.appendChild(frontCard);
+        // the back card
+        const backCard = document.createElement("div");
+        backCard.setAttribute("class", "back_card");
+        backCard.style.backgroundImage = `url(${backgroundSrc})`;
+        card.appendChild(backCard);
+
+        card.addEventListener('click', (e) => {
+            /*
+            const startPosition = e.target.getBoundingClientRect();
+            console.log(startPosition);
+            const imgPath = e.target.getAttribute("data-pairNum");
+            // const endPositionX = 0;
+            // const endPositionY = 0;
+            const flyCard = document.createElement('img');
+            flyCard.setAttribute("class", "fly_card");
+            flyCard.setAttribute("data-end-left", "0");
+            flyCard.style.position = "absolute";
+            flyCard.style.left = startPosition.left + "px";
+            flyCard.style.top = startPosition.top + "px";
+            flyCard.style.width = startPosition.left - startPosition.right + "px";
+            flyCard.style.height = startPosition.top - startPosition.bottom + "px";
+            flyCard.style.backgroundImage = getImagSrcByDataIdAndCardStyle(imgPath, cardsStyle);
+            document.body.appendChild(flyCard);
+            e.target.style.display = "none";
+
+            */
+            handleCardClick(card);
+        }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         board.appendChild(card);
     }
 }
@@ -64,16 +97,16 @@ function createElementsByArrAndCardsStyle (arr, cardsStyle) {
 export function submitEventListener(e) {
     e.preventDefault();
 
-    const userChoicesObj = getUserChoices(e);  
-   
-    
-   statusObj.cardStyle = userChoicesObj['cards-style'];
+    const userChoicesObj = getUserChoices(e);
+
+
+    statusObj.cardStyle = userChoicesObj['cards-style'];
 
     setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
 
     const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj['num-of-cards']);
     console.log(matrixCardsNumbers);
-    
+
     createElementsByArrAndCardsStyle(matrixCardsNumbers, userChoicesObj["cards-style"]);
 
     // display-none start page with animation:

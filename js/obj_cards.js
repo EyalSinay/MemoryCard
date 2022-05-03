@@ -378,7 +378,4 @@ export const objCards = {
         const index = valuesArr.findIndex(obj => obj.dataId === dataId);
         return valuesArr[index][cardStyle];
     },
-    getImagBackgroundSrcByCardStyle: function (cardStyle) {
-        return this.backgroundCards[cardStyle];
-    },
 };
