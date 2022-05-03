@@ -62,8 +62,8 @@ function getRandomArrMatrix(arr, numOfCards) {
     return arr;
 }
 
-//* creates HTML elements based on recieved grid and chosen image set.
 
+//* creates HTML elements based on received grid and chosen image set.
 function createElements (grid, imageSet) {
     const board = document.querySelector("#gameBoard");
     for (let i = 0; i < grid.length; i++){
