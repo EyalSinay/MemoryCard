@@ -8,33 +8,33 @@ const statusObj = {
 
 }
 
-function handleCardClick(card){
+export function handleCardClick(card) {
     // OPENING CARD ONE  //
     card.setAttribute("data-open", true);
-    if (!statusObj.open){
+    if (!statusObj.open) {
         statusObj.open = true;
-    statusObj.currentCard = card.getAttribute("data-pairNum");
-    // console.log(statusObj);
-} else {
-   
-    checkMatch(card);
-}
+        statusObj.currentCard = card.getAttribute("data-pairNum");
+        // console.log(statusObj);
+    } else {
+
+        checkMatch(card);
+    }
 
 }
 // CARD TWO CHECK MATCH//
-function checkMatch(card){
+function checkMatch(card) {
 
-    if (card.getAttribute("data-pairNum") === statusObj.currentCard){
+    if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
         statusObj.score++;
-       const allOpen = document.querySelectorAll("[data-open='true']");
-//! ADD DELAY HERE //
-       allOpen.forEach((e)=>{
-           e.style.visibility = "hidden";
+        const allOpen = document.querySelectorAll("[data-open='true']");
+        //! ADD DELAY HERE //
+        allOpen.forEach((e) => {
+            e.style.visibility = "hidden";
         })
         statusObj.open = false;
-       
-    //     console.log(statusObj);
-    } else{
-        
+
+        //     console.log(statusObj);
+    } else {
+
     }
 }

@@ -1,5 +1,6 @@
 import { objCards } from './obj_cards.js';
 import { shuffleArray } from './tools.js';
+import { handleCardClick } from './game.js';
 
 function getUserChoices(e) {
     const inputsFormCollection = e.target.querySelectorAll('#start-page-form input');
@@ -42,14 +43,25 @@ function getRandomArrIdByNumOfCards(numOfCards) {
 
 //* creates HTML elements based on received grid and chosen image set.
 function createElementsByArrAndCardsStyle (arr, cardsStyle) {
-    const backgroundSrc = objCards.getImagBackgroundSrcByCardStyle(cardsStyle)
+    const backgroundSrc = objCards.backgroundCards[cardsStyle]; // get imag background src by card style
     const board = document.querySelector("#gameBoard");
     for (let i = 0; i < arr.length; i++){
-        const card = document.createElement("img");
+
+        const card = document.createElement("div");
+        card.setAttribute("class", "card");
         card.setAttribute("data-pairNum", arr[i]);
-        card.setAttribute("src", backgroundSrc);
-        card.style.width = '100%';
         card.setAttribute("data-open", "false");
+
+        const frontCard = document.createElement("div");
+        frontCard.setAttribute("class", "front_card");
+        frontCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(arr[i], cardsStyle)})`;
+        card.appendChild(frontCard);
+
+        const backCard = document.createElement("div");
+        backCard.setAttribute("class", "back_card");
+        backCard.style.backgroundImage = `url(${backgroundSrc})`;
+        card.appendChild(backCard);
+
         card.addEventListener('click', ()=>handleCardClick(card)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         board.appendChild(card);
     }
