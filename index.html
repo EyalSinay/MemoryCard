@@ -76,8 +76,38 @@
     </div>
 
     <div class="game-container" data-display="false">
-      <!-- STATUS BOARD -->
-      <div class="statusBoard">
+      <!-- STATUS BOARD PLAYER1-->
+      <div class="statusBoardPl1">
+        <div class="clock">
+          <div class="statusImgBox clockImg"></div>
+          <div class="timer">
+            <span id="minutes">00</span>:<span id="seconds">00</span>
+          </div>
+        </div>
+        <div class="turnOver">
+          <div class="statusImgBox turnOverImg"></div>
+          <div class="turnOverCount">00</div>
+        </div>
+        <div class="winning">
+          <div class="statusImgBox winningImg"></div>
+          <div class="winningCount">00</div>
+        </div>
+        <div class="gameButtons">
+          <button class="gameBtn exitBtn"></button>
+          <button class="gameBtn restartBtn"></button>
+        </div>
+      </div>
+      <!-- STATUS BOARD PLAYER1 END-->
+
+      <!-- GRID SECTION -->
+      <div class="grid">
+        <h1>MEMORY GAME</h1>
+        <div id="gameBoard"></div>
+      </div>
+      <!-- GRID SECTION END -->
+
+      <!-- STATUS BOARD PLAYER2-->
+      <!-- <div class="statusBoardPl2">
         <div class="clock">
           <div class="statusImgBox clockImg"></div>
           <div class="timer">00:00</div>
@@ -91,18 +121,11 @@
           <div class="winningCount">00</div>
         </div>
         <div class="gameButtons">
-          <button class="gameBtn startBtn"></button>
+          <button class="gameBtn exitBtn"></button>
           <button class="gameBtn restartBtn"></button>
         </div>
-      </div>
-      <!-- STATUS BOARD END-->
-
-      <!-- GRID SECTION -->
-      <div class="grid">
-        <h1>MEMORY GAME</h1>
-        <div id="gameBoard"></div>
-      </div>
-      <!-- GRID SECTION END -->
+      </div> -->
+      <!-- STATUS BOARD PLAYER2 END-->
 
       <!--  SIDE BAR -->
       <div class="sideBar">
