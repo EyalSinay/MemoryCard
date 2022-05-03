@@ -1,0 +1,34 @@
+[animation="rotate_scale_opacity-out"] {
+    animation: rotateScaleOpacityOut;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+[animation="rotate_scale_opacity-in"] {
+    animation: rotateScaleOpacityIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes rotateScaleOpacityOut {
+    0% {}
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rotateScaleOpacityIn {
+    0% {
+        opacity: 0;
+    }
+    100% {}
+}
+
+[data-display="true"] {
+    display: grid;
+}
+
+[data-display="false"] {
+    display: none;
+}

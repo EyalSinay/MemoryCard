@@ -3,42 +3,7 @@
   --rows: 0;
 }
 
-[animation="rotate_scale_opacity-out"] {
-  animation: rotateScaleOpacityOut;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-[animation="rotate_scale_opacity-in"] {
-  animation: rotateScaleOpacityIn;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes rotateScaleOpacityOut {
-  0% {
-  }
-  100% {
-    transform: rotate(360deg) scale(5);
-    opacity: 0;
-  }
-}
-@keyframes rotateScaleOpacityIn {
-  0% {
-    transform: rotate(-360deg) scale(5);
-    opacity: 0;
-  }
-  100% {
-  }
-}
-
-[data-display="true"] {
-  display: grid;
-}
-[data-display="false"] {
-  display: none;
-}
-
-#game-board {
+#gameBoard {
   display: grid;
   grid-template-columns: repeat(var(--columns), 5vw);
   grid-template-rows: repeat(var(--rows), 10vw);
