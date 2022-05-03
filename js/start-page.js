@@ -1,6 +1,11 @@
+
 import { objCards } from './obj_cards.js';
 import { shuffleArray } from './tools.js';
 import { handleCardClick } from './game.js';
+
+import {handleCardClick} from './game.js';
+import {statusObj} from './game.js';
+
 
 function getUserChoices(e) {
     const inputsFormCollection = e.target.querySelectorAll('#start-page-form input');
@@ -93,8 +98,10 @@ function createElementsByArrAndCardsStyle (arr, cardsStyle) {
 export function submitEventListener(e) {
     e.preventDefault();
 
-    const userChoicesObj = getUserChoices(e);
-    console.log(userChoicesObj);
+    const userChoicesObj = getUserChoices(e);  
+   
+    
+   statusObj.cardStyle = userChoicesObj['cards-style'];
 
     setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
 
@@ -115,3 +122,5 @@ export function submitEventListener(e) {
     gameContainer.setAttribute("data-display", "true");
     gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
 };
+
+
