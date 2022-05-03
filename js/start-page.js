@@ -46,23 +46,45 @@ function createElementsByArrAndCardsStyle (arr, cardsStyle) {
     const backgroundSrc = objCards.backgroundCards[cardsStyle]; // get imag background src by card style
     const board = document.querySelector("#gameBoard");
     for (let i = 0; i < arr.length; i++){
-
+        // the card div
         const card = document.createElement("div");
         card.setAttribute("class", "card");
         card.setAttribute("data-pairNum", arr[i]);
-        card.setAttribute("data-open", "false");
-
+        card.setAttribute("data-open", "false");  // ! back to false!
+        // the front card
         const frontCard = document.createElement("div");
         frontCard.setAttribute("class", "front_card");
         frontCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(arr[i], cardsStyle)})`;
         card.appendChild(frontCard);
-
+        // the back card
         const backCard = document.createElement("div");
         backCard.setAttribute("class", "back_card");
         backCard.style.backgroundImage = `url(${backgroundSrc})`;
         card.appendChild(backCard);
 
-        card.addEventListener('click', ()=>handleCardClick(card)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        card.addEventListener('click', (e)=>{
+            /*
+            const startPosition = e.target.getBoundingClientRect();
+            console.log(startPosition);
+            const imgPath = e.target.getAttribute("data-pairNum");
+            // const endPositionX = 0;
+            // const endPositionY = 0;
+            const flyCard = document.createElement('img');
+            flyCard.setAttribute("class", "fly_card");
+            flyCard.setAttribute("data-end-left", "0");
+            flyCard.style.position = "absolute";
+            flyCard.style.left = startPosition.left + "px";
+            flyCard.style.top = startPosition.top + "px";
+            flyCard.style.width = startPosition.left - startPosition.right + "px";
+            flyCard.style.height = startPosition.top - startPosition.bottom + "px";
+            flyCard.style.backgroundImage = getImagSrcByDataIdAndCardStyle(imgPath, cardsStyle);
+            document.body.appendChild(flyCard);
+            e.target.style.display = "none";
+
+            */
+            handleCardClick(card);
+        }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         board.appendChild(card);
     }
 }
