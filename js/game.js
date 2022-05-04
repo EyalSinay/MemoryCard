@@ -1,4 +1,5 @@
 import { objCards } from "./obj_cards.js";
+// import { matchCardsAnimationByCardsCollection } from "./temporary-file.js";
 
 export const statusObj = {
   cardStyle: null,
@@ -37,6 +38,7 @@ function checkMatch(card) {
     checkScore();
     statusObj.open = false;
     const allOpen = document.querySelectorAll("[data-open='true']");
+    // matchCardsAnimationByCardsCollection(allOpen);
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
       e.style.visibility = "hidden";

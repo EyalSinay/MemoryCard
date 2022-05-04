@@ -29,56 +29,37 @@
               value="12"
               checked
             />
-            <label for="12cards">Easy (12 Cards)</label><br />
+            <label for="12cards">Easy (12 Cards)</label>
             <input type="radio" name="num-of-cards" id="18cards" value="18" />
-            <label for="18cards">Medium (18 Cards)</label><br />
+            <label for="18cards">Medium (18 Cards)</label>
             <input type="radio" name="num-of-cards" id="24cards" value="24" />
-            <label for="24cards">Hard (24 Cards)</label><br />
+            <label for="24cards">Hard (24 Cards)</label>
           </div>
 
           <h2 class="input-title" id="num-of-players-title">
             Number of players:
           </h2>
           <div class="input-radio" id="num-of-players-container">
-            <input
-              type="radio"
-              name="num-of-players"
-              id="1player"
-              value="1"
-              checked
-            />
-            <label for="1player">1 player</label><br />
+            <input type="radio" name="num-of-players" id="1player" value="1" checked />
+            <label for="1player">1 player</label>
+
+            <label for="player1-name">name:</label>
+            <input type="text" name="player1-name" id="player1-name" value="PL1" maxlength="3" />
+
             <input type="radio" name="num-of-players" id="2players" value="2" />
-            <label for="2players">2 players</label><br />
-            <input type="radio" name="num-of-players" id="3players" value="3" />
-            <label for="3players">3 players</label><br />
-            <input type="radio" name="num-of-players" id="4players" value="4" />
-            <label for="4players">4 players</label><br />
+            <label for="2players">2 players</label>
+
+            <label for="player2-name">name:</label>
+            <input type="text" name="player2-name" id="player2-name" value="PL2" maxlength="3" disabled />
           </div>
           <h2 class="input-title" id="cards-style-title">Cards Style:</h2>
           <div class="input-radio" id="cards-style-container">
-            <input
-              type="radio"
-              name="cards-style"
-              id="french-suited-cards"
-              value="cardStyle1"
-              checked
-            />
-            <label for="french-suited-cards">French suited cards</label><br />
-            <input
-              type="radio"
-              name="cards-style"
-              id="flags"
-              value="cardStyle2"
-            />
-            <label for="flags">Country flags</label><br />
-            <input
-              type="radio"
-              name="cards-style"
-              id="something3"
-              value="cardStyle3"
-            />
-            <label for="something3">something3</label><br />
+            <input type="radio" name="cards-style" id="french-suited-cards" value="cardStyle1" checked />
+            <label for="french-suited-cards">French suited cards</label>
+            <input type="radio" name="cards-style" id="flags" value="cardStyle2" />
+            <label for="flags">Country flags</label>
+            <input type="radio" name="cards-style" id="something3" value="cardStyle3" />
+            <label for="something3">something3</label>
           </div>
           <div id="submit-container">
             <button id="start-game" type="submit">START GAME</button>
