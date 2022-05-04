@@ -70,26 +70,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     backCard.style.backgroundImage = `url(${backgroundSrc})`;
     card.appendChild(backCard);
 
-    card.addEventListener("click", (e) => {
-      /*
-            const startPosition = e.target.getBoundingClientRect();
-            console.log(startPosition);
-            // const imgPath = e.target.getAttribute("data-pairNum");
-            // const endPositionX = 0;
-            // const endPositionY = 0;
-            const flyCard = document.createElement('img');
-            flyCard.setAttribute("class", "fly_card");
-            flyCard.setAttribute("data-end-left", "0");
-            flyCard.style.position = "absolute";
-            flyCard.style.left = startPosition.left + "px";
-            flyCard.style.top = startPosition.top + "px";
-            flyCard.style.width = (startPosition.right - startPosition.left) + "px";
-            flyCard.style.height = (startPosition.bottom - startPosition.top) + "px";
-            flyCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(1, 'cardStyle1')})`;
-            document.body.appendChild(flyCard);
-            e.target.style.display = "none";
-            */
-
+    card.addEventListener('click', (e) => {
       handleCardClick(card);
     }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -133,8 +114,23 @@ export function submitEventListener(e) {
   );
   startPageMainContainer.setAttribute("animation", "rotate_scale_opacity-out");
 
+<<<<<<< HEAD
+  // display-none start page with animation:
+  const startPageMainContainer = document.querySelector('.start-page-main-container');
+  startPageMainContainer.addEventListener('animationend', e => {
+    e.target.setAttribute('data-display', 'false');
+  }, { once: true });
+  startPageMainContainer.setAttribute('animation', 'rotate_scale_opacity-out');
+
+  // display-grid game page with animation:
+  const gameContainer = document.querySelector(".game-container");
+  gameContainer.setAttribute("data-display", "true");
+  gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
+};
+=======
   // display-grid game page with animation:
   const gameContainer = document.querySelector(".game-container");
   gameContainer.setAttribute("data-display", "true");
   gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
 }
+>>>>>>> d6527998bfe9168349b26aa3d8daa50a64d317df
