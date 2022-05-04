@@ -65,26 +65,6 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
         card.appendChild(backCard);
 
         card.addEventListener('click', (e) => {
-            
-            /*
-            const startPosition = e.target.getBoundingClientRect();
-            console.log(startPosition);
-            // const imgPath = e.target.getAttribute("data-pairNum");
-            // const endPositionX = 0;
-            // const endPositionY = 0;
-            const flyCard = document.createElement('img');
-            flyCard.setAttribute("class", "fly_card");
-            flyCard.setAttribute("data-end-left", "0");
-            flyCard.style.position = "absolute";
-            flyCard.style.left = startPosition.left + "px";
-            flyCard.style.top = startPosition.top + "px";
-            flyCard.style.width = (startPosition.right - startPosition.left) + "px";
-            flyCard.style.height = (startPosition.bottom - startPosition.top) + "px";
-            flyCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(1, 'cardStyle1')})`;
-            document.body.appendChild(flyCard);
-            e.target.style.display = "none";
-            */
-            
             handleCardClick(card);
         }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
