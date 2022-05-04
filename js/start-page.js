@@ -102,35 +102,14 @@ export function submitEventListener(e) {
   );
 
   // display-none start page with animation:
-  const startPageMainContainer = document.querySelector(
-    ".start-page-main-container"
-  );
-  startPageMainContainer.addEventListener(
-    "animationend",
-    (e) => {
-      e.target.setAttribute("data-display", "false");
-    },
-    { once: true }
-  );
-  startPageMainContainer.setAttribute("animation", "rotate_scale_opacity-out");
-
-<<<<<<< HEAD
-  // display-none start page with animation:
-  const startPageMainContainer = document.querySelector('.start-page-main-container');
-  startPageMainContainer.addEventListener('animationend', e => {
-    e.target.setAttribute('data-display', 'false');
+  const startPageMainContainer = document.querySelector(".start-page-main-container");
+  startPageMainContainer.addEventListener("animationend", (e) => {
+    e.target.setAttribute("data-display", "false");
   }, { once: true });
-  startPageMainContainer.setAttribute('animation', 'rotate_scale_opacity-out');
+  startPageMainContainer.setAttribute("animation", "opacity-out");
 
   // display-grid game page with animation:
   const gameContainer = document.querySelector(".game-container");
   gameContainer.setAttribute("data-display", "true");
-  gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
+  gameContainer.setAttribute("animation", "opacity-in");
 };
-=======
-  // display-grid game page with animation:
-  const gameContainer = document.querySelector(".game-container");
-  gameContainer.setAttribute("data-display", "true");
-  gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
-}
->>>>>>> d6527998bfe9168349b26aa3d8daa50a64d317df

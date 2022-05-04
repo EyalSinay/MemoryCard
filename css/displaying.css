@@ -1,10 +1,10 @@
-[animation="rotate_scale_opacity-out"] {
+[animation="opacity-out"] {
     animation: rotateScaleOpacityOut;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
-[animation="rotate_scale_opacity-in"] {
+[animation="opacity-in"] {
     animation: rotateScaleOpacityIn;
     animation-duration: 1s;
     animation-fill-mode: forwards;
