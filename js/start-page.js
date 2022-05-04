@@ -2,9 +2,6 @@ import { objCards } from "./obj_cards.js";
 import { shuffleArray } from "./tools.js";
 import { handleCardClick, statusObj } from "./game.js";
 import { startTimer } from "./tools.js";
-//only for test
-import { addPointToScore } from "./game.js";
-import { addPointToTurnOver } from "./game.js";
 
 function getUserChoices(e) {
   const inputsFormCollection = e.target.querySelectorAll(
@@ -26,12 +23,15 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
+    statusObj.needToWIN = 1;
   } else if (numOfCards === "18") {
     rows = 3;
     columns = 6;
+    statusObj.needToWIN = 9;
   } else if (numOfCards === "24") {
     rows = 4;
     columns = 6;
+    statusObj.needToWIN = 12;
   }
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);
@@ -100,9 +100,6 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 export function submitEventListener(e) {
   e.preventDefault();
   startTimer();
-  //for test
-  addPointToScore();
-  addPointToTurnOver();
 
   const userChoicesObj = getUserChoices(e);
 
