@@ -6,6 +6,8 @@ export const statusObj = {
   currentCard: null,
   userChoice: null,
   waiting: false,
+  turnOver: 0,
+  needToWIN: 0,
   score: 0,
 };
 
@@ -31,6 +33,8 @@ function checkMatch(card) {
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
     // alert('correct');
     statusObj.score++;
+    addPointToScore();
+    checkScore();
     statusObj.open = false;
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
@@ -38,7 +42,9 @@ function checkMatch(card) {
       e.style.visibility = "hidden";
     });
   } else {
-    statusObj.score--;
+    statusObj.turnOver++;
+    addPointToTurnOver();
+    // statusObj.score--;
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
@@ -50,8 +56,6 @@ function checkMatch(card) {
 // ADD POINT TO SCORE //
 export function addPointToScore() {
   const scoreStatus = document.querySelector(".winningCount");
-  let currentScore = scoreStatus.innerText;
-  statusObj.score++;
   scoreStatus.innerText = statusObj.score;
   AnimateScore(scoreStatus);
 }
@@ -61,14 +65,46 @@ function AnimateScore(StatusBoardEL) {
   StatusBoardEL.setAttribute("data-addPoint", "true");
   setTimeout(() => {
     StatusBoardEL.setAttribute("data-addPoint", "false");
-  }, 4000);
+  }, 1000);
 }
 
 //  ADD POINT TO TURN OVER
 export function addPointToTurnOver() {
   const turnOverCountStatus = document.querySelector(".turnOverCount");
-  let currentTurnOverCount = turnOverCountStatus.innerText;
-  statusObj.score++;
-  turnOverCountStatus.innerText = statusObj.score;
+  turnOverCountStatus.innerText = statusObj.turnOver;
   AnimateScore(turnOverCountStatus);
 }
+
+// CHECK SCORE
+function checkScore() {
+  if (statusObj.score === statusObj.needToWIN) {
+    const newHighScoreParent = document.querySelector(".newHighScore");
+    if (newHighScoreParent.childNodes.length > 0) renderBestScore();
+    else renderFirstScore(newHighScoreParent);
+  }
+}
+
+//RENDER FIRST SCORE
+function renderFirstScore(newHighScoreParent) {
+  popUpWinnerMassege();
+  const newDiv = document.createElement("div");
+  const newScoreHeader = newDiv;
+  newScoreHeader.innerHtml = `<div class="highScoresWinners highScoresTable"></div>`;
+  const newScorePlace = newDiv;
+  newScorePlace.innerHtml = `<div>1ST</div>`;
+  const newScoreTime = newDiv;
+  newScoreTime.innerHtml = `<div>${statusObj.score}</div>`;
+  const newScoreName = newDiv;
+  newScoreName.innerHtml = `<div>SOB</div>`;
+
+  console.log("before append");
+  //   newHighScoreParent1.appendChild(newScore);
+  //   console.log(newScore);
+}
+
+// RENDER BEST SCORE
+function renderBestScore() {
+  const allScores = document.querySelectorAll(".highScoresWinners");
+}
+// POP UP WINNER MASSEGE
+function popUpWinnerMassege() {}
