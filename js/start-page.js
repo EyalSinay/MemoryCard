@@ -10,8 +10,14 @@ function getUserChoices(e) {
   const inputsFormElementsTruth = [...inputsFormCollection].filter(
     (option) => option.checked === true
   );
+  const inputFormElementsNames = [...inputsFormCollection].filter(
+    (input) => input.type === 'text'
+  );
   const userChoicesObj = {};
   inputsFormElementsTruth.forEach((element) => {
+    userChoicesObj[element.name] = element.value;
+  });
+  inputFormElementsNames.forEach((element) => {
     userChoicesObj[element.name] = element.value;
   });
   return userChoicesObj;
@@ -83,6 +89,7 @@ export function submitEventListener(e) {
   startTimer();
 
   const userChoicesObj = getUserChoices(e);
+  console.log(userChoicesObj);
 
   statusObj.cardStyle = userChoicesObj["cards-style"];
 
