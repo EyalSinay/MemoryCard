@@ -3,7 +3,9 @@ import { shuffleArray } from "./tools.js";
 import { handleCardClick, statusObj } from "./game.js";
 import { startTimer } from "./tools.js";
 
-function getUserChoices(e) {
+export const userChoicesObj = {};
+
+function setUserChoices(e) {
   const inputsFormCollection = e.target.querySelectorAll(
     "#start-page-form input"
   );
@@ -13,14 +15,12 @@ function getUserChoices(e) {
   const inputFormElementsNames = [...inputsFormCollection].filter(
     (input) => input.type === 'text'
   );
-  const userChoicesObj = {};
   inputsFormElementsTruth.forEach((element) => {
     userChoicesObj[element.name] = element.value;
   });
   inputFormElementsNames.forEach((element) => {
     userChoicesObj[element.name] = element.value;
   });
-  return userChoicesObj;
 }
 
 function setGridPropertyByNumOfCards(numOfCards) {
@@ -63,7 +63,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     card.setAttribute("data-pairNum", arr[i]);
     card.setAttribute("data-open", "false");
     card.setAttribute("data-unique", i);
-    
+
     // the front card
     const frontCard = document.createElement("div");
     frontCard.setAttribute("class", "front_card");
@@ -80,32 +80,33 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 
     card.addEventListener('click', (e) => {
       handleCardClick(card);
-    }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    });
 
     board.appendChild(card);
   }
 }
 
-export function submitEventListener(e) {
-  e.preventDefault();
+export function starGame() {
   startTimer();
-
-  const userChoicesObj = getUserChoices(e);
-  console.log(userChoicesObj);
 
   statusObj.cardStyle = userChoicesObj["cards-style"];
 
-  setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
-
-  const matrixCardsNumbers = getRandomArrIdByNumOfCards(
-    userChoicesObj["num-of-cards"]
-  );
+  const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj["num-of-cards"]);
   console.log(matrixCardsNumbers);
 
-  createElementsByArrAndCardsStyle(
-    matrixCardsNumbers,
-    userChoicesObj["cards-style"]
-  );
+  createElementsByArrAndCardsStyle(matrixCardsNumbers, userChoicesObj["cards-style"]);
+
+}
+
+export function submitEventListener(e) {
+  e.preventDefault();
+
+  setUserChoices(e);
+  console.log(userChoicesObj);
+
+  setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
+
+  starGame();
 
   // display-none start page with animation:
   const startPageMainContainer = document.querySelector(".start-page-main-container");
@@ -116,6 +117,6 @@ export function submitEventListener(e) {
 
   // display-grid game page with animation:
   const gameContainer = document.querySelector(".game-container");
-  gameContainer.setAttribute("data-display", "true");
   gameContainer.setAttribute("animation", "opacity-in");
+  gameContainer.setAttribute("data-display", "true");
 };

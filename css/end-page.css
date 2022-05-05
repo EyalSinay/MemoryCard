@@ -1,0 +1,56 @@
+.end-page-container {
+    border-radius: 10%;
+    padding: 40px;
+    background-color: aliceblue;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    animation-name: opacity-in;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+
+.exit-popup{
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background-image: url(../assests/imgGame/x-icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all 1s;
+}
+.exit-popup:hover{
+    opacity: 0.5;
+    cursor: pointer;
+    background-color: rgba(153, 205, 50, 0.2);
+}
+
+.end-page-container .eng-msg__header {
+    text-align: center;
+}
+
+.end-page-container .eng-msg__time {
+    margin: 4px 0px;
+}
+
+.end-page-container .eng-msg__place {
+    margin: 8px 0px;
+}
+
+@keyframes opacity-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
