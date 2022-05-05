@@ -29,24 +29,15 @@ export function handleCardClick(card) {
   }else { setTimeout(checkMatch, 1200, card); }
 
     } 
-
-    
-    
   }
-  
-
-
 // CARD TWO CHECK MATCH//
 function checkMatch(card) {
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
     statusObj.score++;
-
     statusObj.open=0;
-
     addPointToScore();
     checkScore();
     statusObj.open = false;
-
     const allOpen = document.querySelectorAll("[data-open='true']");
     // matchCardsAnimationByCardsCollection(allOpen);
     allOpen.forEach((e) => {
