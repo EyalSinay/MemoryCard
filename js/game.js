@@ -17,24 +17,24 @@ export const statusObj = {
 
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
-  let pairNum = parseInt(card.getAttribute("data-pairNum"));
-  let src = objCards.getImagSrcByDataIdAndCardStyle(pairNum, `${statusObj["cardStyle"]}`);
-    if (card.getAttribute("data-unique")!=statusObj.unique && statusObj.open<2){
-      statusObj.unique=  card.getAttribute("data-unique");
-      statusObj.open++;
-      card.setAttribute("src", src);
-      card.setAttribute("data-open", true);
-      if (statusObj.open<2){
-    statusObj.currentCard = card.getAttribute("data-pairNum");
-  }else { setTimeout(checkMatch, 1200, card); }
+  // let pairNum = parseInt(card.getAttribute("data-pairNum"));
+  // let src = objCards.getImagSrcByDataIdAndCardStyle(pairNum, `${statusObj["cardStyle"]}`);
+  if (card.getAttribute("data-unique") != statusObj.unique && statusObj.open < 2) {
+    statusObj.unique = card.getAttribute("data-unique");
+    statusObj.open++;
+    // card.setAttribute("src", src);
+    card.setAttribute("data-open", true);
+    if (statusObj.open < 2) {
+      statusObj.currentCard = card.getAttribute("data-pairNum");
+    } else { setTimeout(checkMatch, 1200, card); }
 
-    } 
   }
+}
 // CARD TWO CHECK MATCH//
 function checkMatch(card) {
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
     statusObj.score++;
-    statusObj.open=0;
+    statusObj.open = 0;
     addPointToScore();
     checkScore();
     statusObj.open = false;
@@ -51,7 +51,7 @@ function checkMatch(card) {
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
-      e.setAttribute("src", objCards.backgroundCards[statusObj["cardStyle"]]);
+      // e.setAttribute("src", objCards.backgroundCards[statusObj["cardStyle"]]);
     });
     statusObj.open = 0;
   }
@@ -110,4 +110,4 @@ function renderBestScore() {
   const allScores = document.querySelectorAll(".highScoresWinners");
 }
 // POP UP WINNER MASSEGE
-function popUpWinnerMassege() {}
+function popUpWinnerMassege() { }
