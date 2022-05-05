@@ -1,10 +1,10 @@
-[animation="rotate_scale_opacity-out"] {
+[animation="opacity-out"] {
     animation: rotateScaleOpacityOut;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
-[animation="rotate_scale_opacity-in"] {
+[animation="opacity-in"] {
     animation: rotateScaleOpacityIn;
     animation-duration: 1s;
     animation-fill-mode: forwards;
@@ -104,19 +104,10 @@
 
 
 
-/* flay card */
-/* 
+/* fly card */
 .fly_card{
+    position: absolute;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    animation-name: flyCard;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
 }
-
-@keyframes flyCard {
-    0% {}
-    100% {transform: translateX(100px)}
-} 
-*/

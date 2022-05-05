@@ -2,9 +2,6 @@ import { objCards } from "./obj_cards.js";
 import { shuffleArray } from "./tools.js";
 import { handleCardClick, statusObj } from "./game.js";
 import { startTimer } from "./tools.js";
-//only for test
-import { addPointToScore } from "./game.js";
-import { addPointToTurnOver } from "./game.js";
 
 function getUserChoices(e) {
   const inputsFormCollection = e.target.querySelectorAll(
@@ -13,8 +10,14 @@ function getUserChoices(e) {
   const inputsFormElementsTruth = [...inputsFormCollection].filter(
     (option) => option.checked === true
   );
+  const inputFormElementsNames = [...inputsFormCollection].filter(
+    (input) => input.type === 'text'
+  );
   const userChoicesObj = {};
   inputsFormElementsTruth.forEach((element) => {
+    userChoicesObj[element.name] = element.value;
+  });
+  inputFormElementsNames.forEach((element) => {
     userChoicesObj[element.name] = element.value;
   });
   return userChoicesObj;
@@ -26,12 +29,15 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
+    statusObj.needToWIN = 1;
   } else if (numOfCards === "18") {
     rows = 3;
     columns = 6;
+    statusObj.needToWIN = 9;
   } else if (numOfCards === "24") {
     rows = 4;
     columns = 6;
+    statusObj.needToWIN = 12;
   }
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);
@@ -72,26 +78,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     backCard.style.backgroundImage = `url(${backgroundSrc})`;
     card.appendChild(backCard);
 
-    card.addEventListener("click", (e) => {
-      /*
-            const startPosition = e.target.getBoundingClientRect();
-            console.log(startPosition);
-            // const imgPath = e.target.getAttribute("data-pairNum");
-            // const endPositionX = 0;
-            // const endPositionY = 0;
-            const flyCard = document.createElement('img');
-            flyCard.setAttribute("class", "fly_card");
-            flyCard.setAttribute("data-end-left", "0");
-            flyCard.style.position = "absolute";
-            flyCard.style.left = startPosition.left + "px";
-            flyCard.style.top = startPosition.top + "px";
-            flyCard.style.width = (startPosition.right - startPosition.left) + "px";
-            flyCard.style.height = (startPosition.bottom - startPosition.top) + "px";
-            flyCard.style.backgroundImage = `url(${objCards.getImagSrcByDataIdAndCardStyle(1, 'cardStyle1')})`;
-            document.body.appendChild(flyCard);
-            e.target.style.display = "none";
-            */
-
+    card.addEventListener('click', (e) => {
       handleCardClick(card);
     }); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -102,11 +89,9 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 export function submitEventListener(e) {
   e.preventDefault();
   startTimer();
-  //for test
-  addPointToScore();
-  addPointToTurnOver();
 
   const userChoicesObj = getUserChoices(e);
+  console.log(userChoicesObj);
 
   statusObj.cardStyle = userChoicesObj["cards-style"];
 
@@ -123,20 +108,14 @@ export function submitEventListener(e) {
   );
 
   // display-none start page with animation:
-  const startPageMainContainer = document.querySelector(
-    ".start-page-main-container"
-  );
-  startPageMainContainer.addEventListener(
-    "animationend",
-    (e) => {
-      e.target.setAttribute("data-display", "false");
-    },
-    { once: true }
-  );
-  startPageMainContainer.setAttribute("animation", "rotate_scale_opacity-out");
+  const startPageMainContainer = document.querySelector(".start-page-main-container");
+  startPageMainContainer.addEventListener("animationend", (e) => {
+    e.target.setAttribute("data-display", "false");
+  }, { once: true });
+  startPageMainContainer.setAttribute("animation", "opacity-out");
 
   // display-grid game page with animation:
   const gameContainer = document.querySelector(".game-container");
   gameContainer.setAttribute("data-display", "true");
-  gameContainer.setAttribute("animation", "rotate_scale_opacity-in");
-}
+  gameContainer.setAttribute("animation", "opacity-in");
+};

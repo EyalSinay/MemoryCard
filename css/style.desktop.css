@@ -190,11 +190,7 @@ h1 {
 .turnOverCount[data-addPoint="true"] {
   animation-name: movingBox;
 
-  animation-duration: 1300ms;
-
-  animation-iteration-count: infinite;
-
-  animation-direction: alternate;
+  animation-duration: 1000ms;
 }
 
 @keyframes movingBox {
@@ -202,6 +198,9 @@ h1 {
     transform: translateY(0);
   }
   25% {
+    transform: translateY(50px);
+  }
+  75% {
     transform: translateY(-50px);
   }
 
