@@ -62,6 +62,8 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     card.setAttribute("class", "card");
     card.setAttribute("data-pairNum", arr[i]);
     card.setAttribute("data-open", "false");
+    card.setAttribute("data-unique", i);
+    
     // the front card
     const frontCard = document.createElement("div");
     frontCard.setAttribute("class", "front_card");
