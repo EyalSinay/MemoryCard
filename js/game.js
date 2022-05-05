@@ -2,36 +2,42 @@ import { objCards } from "./obj_cards.js";
 
 export const statusObj = {
   cardStyle: null,
-  open: false,
+  // open: false,
+  open: 0,
   currentCard: null,
   userChoice: null,
   waiting: false,
   score: 0,
+  unique: null
 };
+
 
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
   let pairNum = parseInt(card.getAttribute("data-pairNum"));
-  let src = objCards.getImagSrcByDataIdAndCardStyle(
-    pairNum,
-    `${statusObj["cardStyle"]}`
-  );
-  card.setAttribute("src", src);
-  card.setAttribute("data-open", true);
-  if (!statusObj.open) {
-    statusObj.open = true;
+  let src = objCards.getImagSrcByDataIdAndCardStyle(pairNum, `${statusObj["cardStyle"]}`);
+    if (card.getAttribute("data-unique")!=statusObj.unique && statusObj.open<2){
+      statusObj.unique=  card.getAttribute("data-unique");
+      statusObj.open++;
+      card.setAttribute("src", src);
+      card.setAttribute("data-open", true);
+      if (statusObj.open<2){
     statusObj.currentCard = card.getAttribute("data-pairNum");
-  } else {
-    card.setAttribute("src", src);
-    setTimeout(checkMatch, 1200, card);
+  }else { setTimeout(checkMatch, 1200, card); }
+
+    } 
+
+    
+    
   }
-}
+  
+
+
 // CARD TWO CHECK MATCH//
 function checkMatch(card) {
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
-    // alert('correct');
     statusObj.score++;
-    statusObj.open = false;
+    statusObj.open=0;
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
@@ -44,7 +50,7 @@ function checkMatch(card) {
       e.setAttribute("data-open", false);
       e.setAttribute("src", objCards.backgroundCards[statusObj["cardStyle"]]);
     });
-    statusObj.open = false;
+    statusObj.open = 0;
   }
 }
 // ADD POINT TO SCORE //
