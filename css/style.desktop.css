@@ -5,12 +5,12 @@
 
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(var(--columns), 5vw);
-  grid-template-rows: repeat(var(--rows), 7.26vw);
+  grid-template-columns: repeat(var(--columns), 9vw);
+  grid-template-rows: repeat(var(--rows), 13vw);
   justify-content: center;
   align-items: center;
   gap: 16px;
-  width: 100vmin;
+  width: 100%;
 }
 
 /* .game-container{
@@ -47,14 +47,14 @@ h1 {
   display: grid;
   grid-template-areas: "controls1 grid1 sidebar";
   /* grid-template-areas: "controls1 grid1 controls2 sidebar"; */
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
   /* grid-template-columns: 1fr 2fr 1fr 1fr; */
   height: 100vh;
 }
 
 .grid {
   display: grid;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 7fr;
   text-align: center;
   margin: 0 auto;
   grid-area: grid1;
@@ -63,12 +63,14 @@ h1 {
 /* HIGH SCORE STYLE */
 
 .sideBar {
-  background-color: black;
+  background-color: transparent;
   grid-area: sidebar;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  
 }
 .highScores {
   color: #fff;
