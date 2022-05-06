@@ -1,3 +1,5 @@
+import { statusObj } from "./game.js";
+
 export function shuffleArray(arr) {
   for (var i = arr.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -104,7 +106,9 @@ export function startTimer() {
       parseInt(second / 60, 10)
     );
     // test //
-    if (sum === 9) clearInterval(startInterval);
+    if (statusObj.pairsRemaining===5){ 
+      clearInterval(startInterval);
+    }
   }, 1000);
-  console.log(startInterval);
+ 
 }
