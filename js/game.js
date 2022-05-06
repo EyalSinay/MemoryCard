@@ -1,6 +1,6 @@
 import { userChoicesObj } from "./start-page.js";
 // import { objCards } from "./obj_cards.js";
-// import { matchCardsAnimationByCardsCollection } from "./temporary-file.js";
+import { matchCardsAnimationByCardsCollection } from "./tools.js";
 
 export const statusObj = {
   cardStyle: null,
@@ -12,7 +12,10 @@ export const statusObj = {
   turnOver: 0,
   pairsRemaining: null,
   score: 0,
+  scoreTwoPlayers1: 0,
+  scoreTwoPlayers2: 0,
   unique: null,
+  playing: 1,
 
 };
 
@@ -40,10 +43,7 @@ function checkMatch(card) {
     checkScore();
     statusObj.open = 0;
     const allOpen = document.querySelectorAll("[data-open='true']");
-    allOpen.forEach((e) => {
-      e.setAttribute("data-open", false);
-      e.style.visibility = "hidden";
-    });
+    matchCardsAnimationByCardsCollection(allOpen);
   } else {
     statusObj.turnOver++;
     addPointToTurnOver();
