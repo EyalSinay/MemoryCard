@@ -1,3 +1,5 @@
+import { statusObj } from "./game.js"; // to check current turn
+
 var count = -50;
 
 export function matchCardsAnimationByCardsCollection(cardsCollection) {

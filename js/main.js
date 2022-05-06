@@ -7,8 +7,10 @@ document.getElementById('2players').addEventListener('change', function () {
     player2Name.removeAttribute('disabled');
     player2Name.focus();
 });
+const player1Name = document.getElementById('player1-name');
 document.getElementById('1player').addEventListener('change', function () {
     player2Name.setAttribute('disabled', '');
+    player1Name.focus();
 });
 
 const form = document.querySelector("#start-page-form");

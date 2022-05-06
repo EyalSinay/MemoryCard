@@ -19,7 +19,12 @@ function setUserChoices(e) {
     userChoicesObj[element.name] = element.value;
   });
   inputFormElementsNames.forEach((element) => {
-    userChoicesObj[element.name] = element.value;
+    let name = element.value;
+    if (!name) {
+      name = element.placeholder;
+    }
+    name = name.toUpperCase();
+    userChoicesObj[element.name] = name;
   });
 }
 
@@ -89,8 +94,6 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 export function starGame() {
   startTimer();
 
-  statusObj.cardStyle = userChoicesObj["cards-style"];
-
   const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj["num-of-cards"]);
   console.log(matrixCardsNumbers);
 
@@ -105,6 +108,18 @@ export function submitEventListener(e) {
   console.log(userChoicesObj);
 
   setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
+
+  if (userChoicesObj['num-of-players'] === '1'){
+    document.querySelector(".pl1").setAttribute("data-display", "false");
+    document.querySelector(".pl2").setAttribute("data-display", "false");
+    document.querySelector(".highScores").setAttribute("data-display", "true");
+    document.querySelector(".one-player").setAttribute("data-display", "true");
+  } else {
+    document.querySelector(".pl1").setAttribute("data-display", "true");
+    document.querySelector(".pl2").setAttribute("data-display", "true");
+    document.querySelector(".highScores").setAttribute("data-display", "false");
+    document.querySelector(".one-player").setAttribute("data-display", "false");
+  }
 
   starGame();
 

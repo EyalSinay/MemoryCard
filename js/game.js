@@ -1,4 +1,5 @@
-import { objCards } from "./obj_cards.js";
+import { userChoicesObj } from "./start-page.js";
+// import { objCards } from "./obj_cards.js";
 // import { matchCardsAnimationByCardsCollection } from "./temporary-file.js";
 
 export const statusObj = {
@@ -17,12 +18,9 @@ export const statusObj = {
 
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
-  // let pairNum = parseInt(card.getAttribute("data-pairNum"));
-  // let src = objCards.getImagSrcByDataIdAndCardStyle(pairNum, `${statusObj["cardStyle"]}`);
   if (card.getAttribute("data-unique") != statusObj.unique && statusObj.open < 2) {
     statusObj.unique = card.getAttribute("data-unique");
     statusObj.open++;
-    // card.setAttribute("src", src);
     card.setAttribute("data-open", true);
     if (statusObj.open < 2) {
       statusObj.currentCard = card.getAttribute("data-pairNum");
@@ -39,7 +37,6 @@ function checkMatch(card) {
     checkScore();
     statusObj.open = false;
     const allOpen = document.querySelectorAll("[data-open='true']");
-    // matchCardsAnimationByCardsCollection(allOpen);
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
       e.style.visibility = "hidden";
@@ -51,7 +48,6 @@ function checkMatch(card) {
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
-      // e.setAttribute("src", objCards.backgroundCards[statusObj["cardStyle"]]);
     });
     statusObj.open = 0;
   }
