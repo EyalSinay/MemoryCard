@@ -29,7 +29,7 @@ export function handleCardClick(card) {
     card.setAttribute("data-open", true);
     if (statusObj.open < 2) {
       statusObj.currentCard = card.getAttribute("data-pairNum");
-    } else { setTimeout(checkMatch, 1200, card); }
+    } else { setTimeout(checkMatch, 1000, card); }
 
   }
 }
@@ -38,20 +38,20 @@ function checkMatch(card) {
   let numOfPlayers = userChoicesObj['num-of-players'];
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
     if (numOfPlayers > 1) {
-      if (statusObj.playing === 1) {
+      if (statusObj.playing == 1) {
         statusObj.scoreTwoPlayers1++;
-        statusObj.playing = 2;
+        
       } else {
         statusObj.scoreTwoPlayers2++;
-        statusObj.playing = 1;
+        
       }
       if (statusObj.scoreTwoPlayers1 >= statusObj.scoreTwoPlayers2) {
         statusObj.winner[0] = userChoicesObj['player1-name'];
-        statusObj[1] = statusObj.scoreTwoPlayers1;
+        statusObj.winner[1] = statusObj.scoreTwoPlayers1;
       }
       else {
         statusObj.winner[0] = userChoicesObj['player2-name'];
-        statusObj[1] = statusObj.scoreTwoPlayers2;
+        statusObj.winner[1] = statusObj.scoreTwoPlayers2;
 
       }
 
@@ -85,12 +85,15 @@ export function addPointToScore() {
     scoreStatus.innerText = statusObj.score;
     AnimateScore(scoreStatus);
   } else {
-    if (statusObj.playing === 1) {
+    if (statusObj.playing == 1) {
       player1ScoreBox.innerText = statusObj.scoreTwoPlayers1;
+      statusObj.playing = 2;
       AnimateScore(scoreStatus);
-    } else {
 
+    } else {
       player2ScoreBox.innerText = statusObj.scoreTwoPlayers2;
+      statusObj.playing = 1;
+      AnimateScore(scoreStatus);
     }
   }
 }
