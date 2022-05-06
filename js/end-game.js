@@ -2,6 +2,7 @@ import { statusObj, addPointToScore, addPointToTurnOver } from "./game.js";
 import { starGame, userChoicesObj } from "./start-page.js";
 
 function resetGame() {
+    
     const allCardsCollection = document.querySelectorAll('.card');
     for (let card of allCardsCollection) {
         card.remove();
@@ -12,7 +13,7 @@ function resetGame() {
     statusObj.userChoice = null;
     statusObj.waiting = false;
     statusObj.turnOver = 0;
-    statusObj.needToWIN = 0;
+    statusObj.pairsRemaining = 0;
     statusObj.score = 0;
     statusObj.unique = null;
 
