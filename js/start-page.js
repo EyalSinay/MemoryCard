@@ -13,7 +13,7 @@ function setUserChoices(e) {
     (option) => option.checked === true
   );
   const inputFormElementsNames = [...inputsFormCollection].filter(
-    (input) => input.type === 'text'
+    (input) => input.type === "text"
   );
   inputsFormElementsTruth.forEach((element) => {
     userChoicesObj[element.name] = element.value;
@@ -34,7 +34,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
-    statusObj.pairsRemaining = 6;
+    statusObj.pairsRemaining = 1;
   } else if (numOfCards === "18") {
     rows = 3;
     columns = 6;
@@ -83,7 +83,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     backCard.style.backgroundImage = `url(${backgroundSrc})`;
     card.appendChild(backCard);
 
-    card.addEventListener('click', (e) => {
+    card.addEventListener("click", (e) => {
       handleCardClick(card);
     });
 
@@ -94,11 +94,15 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 export function starGame() {
   startTimer();
 
-  const matrixCardsNumbers = getRandomArrIdByNumOfCards(userChoicesObj["num-of-cards"]);
+  const matrixCardsNumbers = getRandomArrIdByNumOfCards(
+    userChoicesObj["num-of-cards"]
+  );
   console.log(matrixCardsNumbers);
 
-  createElementsByArrAndCardsStyle(matrixCardsNumbers, userChoicesObj["cards-style"]);
-
+  createElementsByArrAndCardsStyle(
+    matrixCardsNumbers,
+    userChoicesObj["cards-style"]
+  );
 }
 
 export function submitEventListener(e) {
@@ -109,7 +113,7 @@ export function submitEventListener(e) {
 
   setGridPropertyByNumOfCards(userChoicesObj["num-of-cards"]);
 
-  if (userChoicesObj['num-of-players'] === '1'){
+  if (userChoicesObj["num-of-players"] === "1") {
     document.querySelector(".pl1").setAttribute("data-display", "false");
     document.querySelector(".pl2").setAttribute("data-display", "false");
     document.querySelector(".highScores").setAttribute("data-display", "true");
@@ -124,14 +128,20 @@ export function submitEventListener(e) {
   starGame();
 
   // display-none start page with animation:
-  const startPageMainContainer = document.querySelector(".start-page-main-container");
-  startPageMainContainer.addEventListener("animationend", (e) => {
-    e.target.setAttribute("data-display", "false");
-  }, { once: true });
+  const startPageMainContainer = document.querySelector(
+    ".start-page-main-container"
+  );
+  startPageMainContainer.addEventListener(
+    "animationend",
+    (e) => {
+      e.target.setAttribute("data-display", "false");
+    },
+    { once: true }
+  );
   startPageMainContainer.setAttribute("animation", "opacity-out");
 
   // display-grid game page with animation:
   const gameContainer = document.querySelector(".game-container");
   gameContainer.setAttribute("animation", "opacity-in");
   gameContainer.setAttribute("data-display", "true");
-};
+}
