@@ -3,6 +3,7 @@ import { starGame, userChoicesObj } from "./start-page.js";
 import { startTimer } from "./tools.js";
 
 function resetGame() {
+
   const allCardsCollection = document.querySelectorAll(".card");
   for (let card of allCardsCollection) {
     card.remove();
@@ -92,4 +93,6 @@ function clearStatusBoard() {
   scoreStatus.innerText = "00";
   const turnOverCountStatus = document.querySelector(".turnOverCount");
   turnOverCountStatus.innerText = "00";
+  const pl1Box = document.querySelector('.count1').innerText = 0;
+  const pl2Box = document.querySelector('.count2').innerText = 0;
 }
