@@ -9,7 +9,6 @@ export const statusObj = {
   open: 0,
   currentCard: null,
   userChoice: null,
-  waiting: false,
   turnOver: 0,
   pairsRemaining: null,
   score: 0,
@@ -126,7 +125,7 @@ function checkScore() {
 
 //RENDER FIRST SCORE
 function renderFirstScore(newHighScoreParent) {
-  popUpWinnerMassege();
+ // popUpWinnerMassege();   //! what is this func?
   const newDiv = document.createElement("div");
   const newScoreHeader = newDiv;
   newScoreHeader.innerHtml = `<div class="highScoresWinners highScoresTable"></div>`;

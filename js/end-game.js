@@ -7,15 +7,22 @@ function resetGame() {
   for (let card of allCardsCollection) {
     card.remove();
   }
+  const allFlyCards = document.querySelectorAll(".fly_card");
+  for (let card of allFlyCards) {
+    card.remove();
+  }
   statusObj.cardStyle = null;
   statusObj.open = 0;
   statusObj.currentCard = null;
   statusObj.userChoice = null;
-  statusObj.waiting = false;
   statusObj.turnOver = 0;
   statusObj.pairsRemaining = 0;
   statusObj.score = 0;
   statusObj.unique = null;
+  statusObj.winner = [null, null],
+  statusObj.playing = 1,
+  statusObj.scoreTwoPlayers1 = 0,
+  statusObj.scoreTwoPlayers2 = 0,
 
   //   const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
   //  ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
