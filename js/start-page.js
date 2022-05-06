@@ -34,7 +34,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
-    statusObj.pairsRemaining = 1;
+    statusObj.pairsRemaining = 6;
   } else if (numOfCards === "18") {
     rows = 3;
     columns = 6;

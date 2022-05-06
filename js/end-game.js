@@ -34,8 +34,8 @@ export function endGame() {
       ".eng-msg__place"
     ).textContent = `You got the 5th place in the table`;
   } else {
-    endPage.querySelector(".eng-msg__header").textContent = `PL1 WIN!`;
-    endPage.querySelector(".eng-msg__time").textContent = `PL1 found 4 matches`;
+    endPage.querySelector(".eng-msg__header").textContent =  `${statusObj.winner[0]} WINS!`;
+    endPage.querySelector(".eng-msg__time").textContent = `${statusObj.winner[0]} found ${statusObj.winner[1]} matches`;
     endPage.querySelector(
       ".eng-msg__place"
     ).textContent = `PL2 found 2 matches`;
