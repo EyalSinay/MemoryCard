@@ -5,12 +5,12 @@
 
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(var(--columns), 9vw);
-  grid-template-rows: repeat(var(--rows), 13vw);
+  grid-template-columns: repeat(var(--columns), 5vw);
+  grid-template-rows: repeat(var(--rows), 7.26vw);
   justify-content: center;
   align-items: center;
   gap: 16px;
-  width: 100%;
+  width: 100vmin;
 }
 
 /* .game-container{
@@ -40,21 +40,21 @@ html {
 
 h1 {
   color: blue;
-  margin-top: 1vh;
+  margin-top: 1rem;
 }
 
 .game-container {
   display: grid;
   grid-template-areas: "controls1 grid1 sidebar";
   /* grid-template-areas: "controls1 grid1 controls2 sidebar"; */
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   /* grid-template-columns: 1fr 2fr 1fr 1fr; */
   height: 100vh;
 }
 
 .grid {
   display: grid;
-  grid-template-rows: 1fr 7fr;
+  grid-template-rows: 1fr 5fr;
   text-align: center;
   margin: 0 auto;
   grid-area: grid1;
@@ -63,36 +63,28 @@ h1 {
 /* HIGH SCORE STYLE */
 
 .sideBar {
-  background-color: transparent;
+  background-color: black;
   grid-area: sidebar;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 10vw;
 }
 .highScores {
   color: #fff;
   display: flex;
   justify-content: flex-start;
-  align-content: flex-start;
   align-items: center;
   flex-direction: column;
   border-radius: 2%;
   border: 5px solid rgb(223, 91, 10);
-  padding: 0vw;
-  height: 80vh;
-  width: 15vw;
-}
-.highScores h1 {
-  padding: 0 3vw;
-  font-size: 1.3vw;
+  padding: 1rem;
+  height: 80%;
+  width: 90%;
+  font-size: 0.7rem;
 }
 .highScoresHeaders {
-  padding: 0 0.5vw;
-}
-.highScoresHeaders h1 {
-  padding: 0.3vw;
+  padding: 1rem;
 }
 .newHighScore {
   flex-direction: column;
@@ -105,10 +97,10 @@ h1 {
   min-width: 100%;
 }
 .highScoresWinners {
-  padding: 0 2vw;
+  padding: 0 1rem;
 }
 .highScoresWinners div {
-  font-size: 2vw;
+  font-size: 1rem;
 }
 
 /* STATUS BOARD STYLE */
@@ -128,7 +120,7 @@ h1 {
 .statusImgBox {
   border: 5px solid rgb(223, 91, 10);
   border-radius: 10%;
-  width: 10vw;
+  width: 10rem;
 }
 /* two players */
 /* .clock {
@@ -155,20 +147,20 @@ h1 {
 .clock {
   display: flex;
   justify-content: center;
-  width: 20vw;
-  height: 10vw;
+  width: 15rem;
+  height: 7rem;
 }
 
 .turnOver,
 .winning {
   display: flex;
   justify-content: center;
-  width: 20vw;
-  height: 10vw;
+  width: 15rem;
+  height: 7rem;
 }
 .turnOverCount,
 .winningCount {
-  width: 7vw;
+  width: 7rem;
   text-align: center;
 }
 /* one player end */
@@ -177,7 +169,7 @@ h1 {
 .turnOverCount,
 .winningCount {
   align-self: center;
-  font-size: 2vw;
+  font-size: 2rem;
   border: 5px solid rgb(223, 91, 10);
   border-radius: 10%;
   background-color: rgb(78, 24, 24);
@@ -238,8 +230,8 @@ h1 {
 } */
 
 .gameBtn {
-  width: 10vw;
-  height: 10vw;
+  width: 10rem;
+  height: 5rem;
   border: 5px solid rgb(223, 91, 10);
   border-radius: 10%;
   cursor: pointer;
