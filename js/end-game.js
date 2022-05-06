@@ -17,10 +17,11 @@ function resetGame() {
   statusObj.score = 0;
   statusObj.unique = null;
 
-  const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
- ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
- ​        ​flyCard​.​remove​(​)​;
- ​    ​}
+  //   const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
+  //  ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
+  //  ​        ​flyCard​.​remove​(​)​;
+  //  ​    ​}
+  clearStatusBoard();
   startTimer();
 }
 
@@ -76,4 +77,12 @@ export function exit() {
   );
   startPageMainContainer.setAttribute("animation", "opacity-in");
   startPageMainContainer.setAttribute("data-display", "true");
+}
+
+// CLEAR STATUS BOARD
+function clearStatusBoard() {
+  const scoreStatus = document.querySelector(".winningCount");
+  scoreStatus.innerText = "00";
+  const turnOverCountStatus = document.querySelector(".turnOverCount");
+  turnOverCountStatus.innerText = "00";
 }
