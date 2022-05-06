@@ -1,4 +1,5 @@
 import { statusObj } from "./game.js";
+import { userChoicesObj } from "./start-page.js"
 
 export function shuffleArray(arr) {
   for (var i = arr.length - 1; i > 0; i--) {
@@ -106,9 +107,59 @@ export function startTimer() {
       parseInt(second / 60, 10)
     );
     // test //
-    if (statusObj.pairsRemaining===5){ 
+    if (statusObj.pairsRemaining === 5) {
       clearInterval(startInterval);
     }
   }, 1000);
- 
+
+}
+
+
+export function matchCardsAnimationByCardsCollection(cardsCollection) {
+  cardsCollection.forEach(element => {
+    element.setAttribute("data-open", false);
+    const startPosition = element.getBoundingClientRect();
+    const flyCard = document.createElement('div');
+    flyCard.setAttribute("class", "fly_card");
+    flyCard.style.left = startPosition.left + "px";
+    flyCard.style.top = startPosition.top + "px";
+    flyCard.style.width = startPosition.width + "px";
+    flyCard.style.height = startPosition.height + "px";
+    flyCard.style.backgroundImage = element.querySelector('.front_card').style.backgroundImage;
+    element.style.visibility = "hidden";
+    document.body.appendChild(flyCard);
+
+    // const targetPositionCollection = document.querySelectorAll('.winning');
+    let targetPosition;
+    let score;
+    if (userChoicesObj['num-of-players'] === '1') {
+      targetPosition = document.querySelector('.one-player').getBoundingClientRect();
+      score = statusObj.score;
+    } else {
+      if (statusObj.playing === 1) {
+        targetPosition = document.querySelector('.pl1').getBoundingClientRect();
+        score = statusObj.scoreTwoPlayers1 * -1;
+      } else {
+        targetPosition = document.querySelector('.pl2').getBoundingClientRect();
+        score = statusObj.scoreTwoPlayers2 * -1;
+      }
+    }
+
+    const targetX = (targetPosition.x - startPosition.x);
+    const targetY = (targetPosition.y - startPosition.y);
+    const move = cardsCollection[0].getBoundingClientRect().width / 5;
+
+    const newspaperSpinning = [
+      { transform: `translate(0,0) scale(1)` },
+      { transform: `translate(${targetX + (score*move)}px,${targetY + (0.5 * startPosition.height)}px) scale(0.5)` },
+    ];
+    const newspaperTiming = {
+      duration: 2000,
+      easing: "ease-in-out",
+      iterations: 1,
+      fill: "forwards",
+    }
+
+    flyCard.animate(newspaperSpinning, newspaperTiming);
+  });
 }
