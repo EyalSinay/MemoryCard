@@ -29,15 +29,15 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
-    statusObj.needToWIN = 1;
+    statusObj.pairsRemaining = 6;
   } else if (numOfCards === "18") {
     rows = 3;
     columns = 6;
-    statusObj.needToWIN = 9;
+    statusObj.pairsRemaining = 9;
   } else if (numOfCards === "24") {
     rows = 4;
     columns = 6;
-    statusObj.needToWIN = 12;
+    statusObj.pairsRemaining = 12;
   }
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);

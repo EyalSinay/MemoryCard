@@ -9,9 +9,10 @@ export const statusObj = {
   userChoice: null,
   waiting: false,
   turnOver: 0,
-  needToWIN: 0,
+  pairsRemaining: null,
   score: 0,
-  unique: null
+  unique: null,
+
 };
 
 
@@ -35,9 +36,11 @@ function checkMatch(card) {
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
     statusObj.score++;
     statusObj.open = 0;
+    statusObj.pairsRemaining--;
+
     addPointToScore();
     checkScore();
-    statusObj.open = false;
+    statusObj.open = 0;
     const allOpen = document.querySelectorAll("[data-open='true']");
     // matchCardsAnimationByCardsCollection(allOpen);
     allOpen.forEach((e) => {
@@ -80,10 +83,13 @@ export function addPointToTurnOver() {
 
 // CHECK SCORE
 function checkScore() {
-  if (statusObj.score === statusObj.needToWIN) {
+  if (statusObj.score === statusObj.pairsRemaining) {
     const newHighScoreParent = document.querySelector(".newHighScore");
-    if (newHighScoreParent.childNodes.length > 0) renderBestScore();
-    else renderFirstScore(newHighScoreParent);
+    if (newHighScoreParent.childNodes.length > 0) {
+      renderBestScore();
+    } else {
+      renderFirstScore(newHighScoreParent);
+    }
   }
 }
 
@@ -110,4 +116,4 @@ function renderBestScore() {
   const allScores = document.querySelectorAll(".highScoresWinners");
 }
 // POP UP WINNER MASSEGE
-function popUpWinnerMassege() { }
+// function popUpWinnerMassege()
