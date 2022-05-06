@@ -69,18 +69,30 @@ export function shuffleArray(arr) {
 // Amir code:
 function generateRandomColor() {
   const RandomColorArr = [
-    "#23B936",
-    "#9980ff",
-    "#8066ff",
-    "#cc5599",
-    "#ffb600",
-    "#ff5c00",
-    "#00f5ff",
-    "#990000",
-    "#b6fcd5",
-    "#003366",
-    "#bada55",
-    "#e6e6fa",
+    // "#23B936",
+    // "#9980ff",
+    // "#8066ff",
+    // "#cc5599",
+    // "#ffb600",
+    // "#ff5c00",
+    // "#00f5ff",
+    // "#990000",
+    // "#b6fcd5",
+    // "#003366",
+    // "#bada55",
+    // "#e6e6fa",
+    "#302b63",
+    "#24243e",
+    "#0f0c29",
+    "#141E30",
+    "#243B55",
+"#2F0743",
+    "#3a6073",
+   "#29323c",
+    "#5D4157",
+    "#485563"
+
+
   ];
   const randomColor = Math.floor(Math.random() * RandomColorArr.length);
   return RandomColorArr[randomColor];
