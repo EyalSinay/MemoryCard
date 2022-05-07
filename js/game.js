@@ -123,7 +123,7 @@ function checkScore() {
     if (newHighScoreParent.childNodes.length > 0) {
       renderBestScore();
     } else {
-      renderFirstScore(newHighScoreParent);
+      scoreResultStart();
     }
   }
 }
@@ -153,28 +153,28 @@ function checkScore() {
 // // POP UP WINNER MASSEGE
 // // function popUpWinnerMassege()
 
-function scoreResultStart() {
-  const insertNameBtn = document.querySelector(".insertNameBtn");
-  insertNameBtn.addEventListener("click", function () {
-    const insertName = document.querySelector(".insertName");
-    const scoreDiv = document.createElement("div");
-    const finalTime = document.querySelector(".timer");
+// SCORE RESULT START
+export function scoreResultStart() {
+  const insertName = document.querySelector("#player1-name");
+  //   insertNameBtn.addEventListener("click", function () {
+  const scoreDiv = document.createElement("div");
+  const finalTime = document.querySelector(".timer");
 
-    buildScoreDiv(scoreDiv, 1, finalTime);
+  buildScoreDiv(scoreDiv, 0, finalTime);
 
-    scoreResultArr.push(scoreDiv);
+  scoreResultArr.push(scoreDiv);
 
-    //   changeScoreTag(1, firstScore, "00:10", insertName);
-    saveStorage(1, finalTime.innerText, insertName.value);
-    appendNewScores(scoreDiv);
-    console.log(scoreResultArr.length);
+  //   changeScoreTag(1, firstScore, "00:10", insertName);
+  saveStorage(1, finalTime.innerText, insertName.value);
+  appendNewScores(scoreDiv);
+  console.log(scoreResultArr.length);
 
-    //   addNewScore();
-  });
+  //   addNewScore();
+  //   });
 }
 
-//RENDER FIRST SCORE
-function renderFirstScore() {
+//RENDER BEST SCORE
+function renderBestScore() {
   let old_data = JSON.parse(localStorage.getItem("data"));
   console.log(old_data.length);
   for (let i = 0; i < old_data.length; i++) {

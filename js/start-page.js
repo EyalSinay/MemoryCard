@@ -1,6 +1,6 @@
 import { objCards } from "./obj_cards.js";
 import { shuffleArray } from "./tools.js";
-import { handleCardClick, statusObj } from "./game.js";
+import { handleCardClick, statusObj, scoreResultStart } from "./game.js";
 import { startTimer } from "./tools.js";
 
 export const userChoicesObj = {};
@@ -97,7 +97,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 export function starGame() {
   statusObj.pairsRemaining = statusObj.pairsNeed;
   startTimer();
-
+  scoreResultStart();
   const matrixCardsNumbers = getRandomArrIdByNumOfCards(
     userChoicesObj["num-of-cards"]
   );
