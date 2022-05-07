@@ -1,21 +1,42 @@
-@media(max-width: 910px){
+@media (max-width: 910px) {
+  .gameContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "controls1"
+      "grid1";
+  }
 
+  .statusBoardPl1 {
+    height: 20vh;
+    width: 95vw;
+    margin-top: 1vh;
+    flex-direction: row;
+  }
 
-.statusBoardPl1 {
+  .one-player {
+    width: 20vw;
+    height: 3vh;
+    align-self: center;
+    margin-bottom: 4vh;
+  }
+  .turnOverImg {
+    font-size: 1.5vw;
+  }
+  .restartBtn {
+    padding: 0px;
+  }
 
-  display: none;
-}
-.highScores{
-  display: none;
-}
-#gameBoard{
-  display: grid;
-  grid-template-columns: repeat(calc(var(--columns)), 20vw);
-  grid-template-rows: repeat(calc(var(--rows)+3), 28vw);
-  justify-content: center;
-  align-items: center;
-  gap: 8px 8px;
-  width: 100vw;
-  height: 100vh;
-}
+  .grid {
+  }
+  /* #gameBoard {
+    display: grid;
+    grid-template-columns: repeat(calc(var(--columns)), 20vw);
+    grid-template-rows: repeat(calc(var(--rows)+3), 28vw);
+    justify-content: center;
+    align-items: center;
+    gap: 8px 8px;
+    width: 100vw;
+    height: 70vh;
+  } */
 }
