@@ -49,6 +49,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
   }
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);
+ 
 }
 
 function getRandomArrIdByNumOfCards(numOfCards) {
@@ -91,7 +92,22 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     });
 
     board.appendChild(card);
+    //! cards get smaller when game is bigger //
+    // board.style.gridTemplateColumns = `repeat(var(--columns), ${(1/userChoicesObj["num-of-cards"])*120}vw)`;
+    // board.style.gridTemplateRows = `repeat(var(--rows), ${(1/userChoicesObj["num-of-cards"])*250}vh)`;
+    if (userChoicesObj["num-of-cards"]==="12"){
+    board.style.gridTemplateColumns = `repeat(var(--columns), 12vw)`;
+    board.style.gridTemplateRows = `repeat(var(--rows), 13vw)`;
+  } else if (userChoicesObj["num-of-cards"]==="18"){
+    board.style.gridTemplateColumns = `repeat(var(--columns), 8vw)`;
+    board.style.gridTemplateRows = `repeat(var(--rows), 13vw)`;
+    document.querySelector("#gameBoard").style.gap = "16px";
+  } else {
+    board.style.gridTemplateColumns = `repeat(var(--columns), 7vw)`;
+    board.style.gridTemplateRows = `repeat(var(--rows), 9vw)`;
+    document.querySelector("#gameBoard").style.gap = "7px 0";
   }
+}
 }
 
 export function starGame() {
