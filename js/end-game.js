@@ -35,7 +35,7 @@ export function endGame() {
   const endPage = document.querySelector(".end-page-container");
   if (userChoicesObj["num-of-players"] === "1") {
     endPage.querySelector(".eng-msg__header").textContent = `You did it!`;
-    endPage.querySelector(".eng-msg__time").textContent = `in 1:11 minutes`;
+    endPage.querySelector(".eng-msg__time").textContent = `in 1:11 minutes`;         //* Add time variable <--------<---------<--------
     endPage.querySelector(
       ".eng-msg__place"
     ).textContent = `You got the 5th place in the table`;

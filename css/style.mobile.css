@@ -1,0 +1,21 @@
+@media(max-width: 910px){
+
+
+.statusBoardPl1 {
+
+  display: none;
+}
+.highScores{
+  display: none;
+}
+#gameBoard{
+  display: grid;
+  grid-template-columns: repeat(calc(var(--columns)), 20vw);
+  grid-template-rows: repeat(calc(var(--rows)+3), 28vw);
+  justify-content: center;
+  align-items: center;
+  gap: 8px 8px;
+  width: 100vw;
+  height: 100vh;
+}
+}
