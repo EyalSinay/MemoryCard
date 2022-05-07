@@ -102,9 +102,8 @@ export function setRandomColorToBody() {
   document.body.style.background = `linear-gradient(135deg, ${generateRandomColor()} 0%, ${generateRandomColor()} 50%, ${generateRandomColor()} 100%)`;
 }
 
-const startButton = document.querySelector(".exitBtn");
-
 // START THE TIME WHEN GAME START
+
 export function startTimer() {
   let second = 0;
   let sum = 0;
@@ -112,13 +111,14 @@ export function startTimer() {
   function pad(value) {
     return value > 9 ? value : "0" + value;
   }
+
   const startInterval = setInterval(function () {
     sum++;
     document.getElementById("seconds").innerHTML = pad(++second % 60);
     document.getElementById("minutes").innerHTML = pad(
       parseInt(second / 60, 10)
     );
-    // test //
+
     if (statusObj.pairsRemaining === 0) {
       clearInterval(startInterval);
     }

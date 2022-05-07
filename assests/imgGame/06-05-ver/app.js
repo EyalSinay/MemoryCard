@@ -350,3 +350,15 @@ export function loadScoreResult() {
               <div data-time="12">00:12</div>
               <div data-winName="a">AMG</div>
             </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
