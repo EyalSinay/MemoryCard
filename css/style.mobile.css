@@ -1,7 +1,7 @@
 @media (max-width: 910px) {
-  .gameContainer {
+  .game-container {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 10fr;
     grid-template-areas:
       "controls1"
       "grid1";
@@ -27,9 +27,7 @@
     padding: 0px;
   }
 
-  .grid {
-  }
-  /* #gameBoard {
+  #gameBoard {
     display: grid;
     grid-template-columns: repeat(calc(var(--columns)), 20vw);
     grid-template-rows: repeat(calc(var(--rows)+3), 28vw);
@@ -38,5 +36,5 @@
     gap: 8px 8px;
     width: 100vw;
     height: 70vh;
-  } */
+  }
 }
