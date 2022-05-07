@@ -1,7 +1,17 @@
 @media (max-width: 910px) {
+  body {
+    min-height: 100vh;
+    min-height: fill-available;
+    min-height: -webkit-fill-available;
+  }
+  html {
+    height: fill-available;
+    height: -webkit-fill-available;
+  }
+
   .game-container {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
       "controls1"
       "grid1";
