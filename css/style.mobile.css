@@ -13,18 +13,30 @@
     margin-top: 1vh;
     flex-direction: row;
   }
+  .statusImgBox {
+    height: 8vh;
+  }
 
   .one-player {
     width: 20vw;
-    height: 3vh;
-    align-self: center;
-    margin-bottom: 4vh;
+    height: vh;
+    align-items: center;
   }
   .turnOverImg {
     font-size: 1.5vw;
+    padding-top: 3vh;
+  }
+  .turnOver {
+    align-items: center;
+  }
+  .clock {
+    align-items: center;
+  }
+  .gameBtn {
+    height: 12vw;
   }
   .restartBtn {
-    padding: 0px;
+    padding: 0;
   }
 
   #gameBoard {
