@@ -11,6 +11,7 @@ export const statusObj = {
   userChoice: null,
   turnOver: 0,
   pairsRemaining: null,
+  pairsNeed: null,
   score: 0,
   scoreTwoPlayers1: 0,
   scoreTwoPlayers2: 0,
@@ -20,10 +21,12 @@ export const statusObj = {
 
 };
 
-
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
-  if (card.getAttribute("data-unique") != statusObj.unique && statusObj.open < 2) {
+  if (
+    card.getAttribute("data-unique") != statusObj.unique &&
+    statusObj.open < 2
+  ) {
     statusObj.unique = card.getAttribute("data-unique");
     statusObj.open++;
     card.setAttribute("data-open", true);
@@ -116,7 +119,7 @@ export function addPointToTurnOver() {
 
 // CHECK SCORE
 function checkScore() {
-  if (statusObj.score === statusObj.pairsRemaining) {
+  if (statusObj.pairsRemaining === 0) {
     const newHighScoreParent = document.querySelector(".newHighScore");
     if (newHighScoreParent.childNodes.length > 0) {
       renderBestScore();
