@@ -1,24 +1,24 @@
 @media (max-width: 910px) {
   body {
-    min-height: 100vh;
-    min-height: fill-available;
-    min-height: -webkit-fill-available;
+    /* min-height: 100vh; */
+    /* min-height: fill-available;
+    min-height: -webkit-fill-available; */
   }
   html {
-    height: fill-available;
-    height: -webkit-fill-available;
+    /* height: fill-available;
+    height: -webkit-fill-available; */
   }
 
   .game-container {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 7fr;
     grid-template-areas:
       "controls1"
       "grid1";
   }
 
   .statusBoardPl1 {
-    height: 20vh;
+    /* height: 20vh; */
     width: 95vw;
     margin-top: 1vh;
     flex-direction: row;
@@ -51,12 +51,16 @@
 
   #gameBoard {
     display: grid;
-    grid-template-columns: repeat(calc(var(--columns)), 20vw);
-    grid-template-rows: repeat(calc(var(--rows)+3), 28vw);
     justify-content: center;
     align-items: center;
     gap: 8px 8px;
     width: 100vw;
-    height: 70vh;
+    /* height: 100vh; */
   }
+
+.grid > h1{
+  display: none;
+}
+
+
 }
