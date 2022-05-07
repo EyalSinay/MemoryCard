@@ -34,6 +34,7 @@ function setGridPropertyByNumOfCards(numOfCards) {
   if (numOfCards === "12") {
     rows = 3;
     columns = 4;
+    statusObj.pairsNeed = 1;
     statusObj.pairsRemaining = 1;
   } else if (numOfCards === "18") {
     rows = 3;
@@ -92,6 +93,7 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
 }
 
 export function starGame() {
+  statusObj.pairsRemaining = statusObj.pairsNeed;
   startTimer();
 
   const matrixCardsNumbers = getRandomArrIdByNumOfCards(
@@ -124,7 +126,7 @@ export function submitEventListener(e) {
     document.querySelector(".highScores").setAttribute("data-display", "false");
     document.querySelector(".one-player").setAttribute("data-display", "false");
   }
-
+  startTimer();
   starGame();
 
   // display-none start page with animation:

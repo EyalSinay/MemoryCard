@@ -7,6 +7,7 @@ function resetGame() {
   for (let card of allCardsCollection) {
     card.remove();
   }
+
   statusObj.cardStyle = null;
   statusObj.open = 0;
   statusObj.currentCard = null;
@@ -17,12 +18,12 @@ function resetGame() {
   statusObj.score = 0;
   statusObj.unique = null;
 
-  //   const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
-  //  ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
-  //  ​        ​flyCard​.​remove​(​)​;
-  //  ​    ​}
+  // if(​document​.classList.contains(​'fly_card'​)) console.log("yesssss");
+  //     const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
+  //    ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
+  //    ​        ​flyCard​.​remove​(​)​;
+  //    ​    ​}
   clearStatusBoard();
-  startTimer();
 }
 
 export function endGame() {
@@ -50,7 +51,10 @@ export function restartGame() {
   }
 
   resetGame();
-  starGame();
+
+  setTimeout(() => {
+    starGame();
+  }, 1000);
 }
 
 export function exit() {

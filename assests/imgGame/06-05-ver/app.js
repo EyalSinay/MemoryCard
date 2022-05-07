@@ -350,3 +350,167 @@ export function loadScoreResult() {
               <div data-time="12">00:12</div>
               <div data-winName="a">AMG</div>
             </div> -->
+
+
+export function startTimer() {
+  let second = 0;
+  let sum = 0;
+
+  function pad(value) {
+    return value > 9 ? value : "0" + value;
+  }
+
+  const startInterval = setInterval(function () {
+    sum++;
+    document.getElementById("seconds").innerHTML = pad(++second % 60);
+    document.getElementById("minutes").innerHTML = pad(
+      parseInt(second / 60, 10)
+    );
+
+    if (statusObj.pairsRemaining === 0) {
+      clearInterval(startInterval);
+    }
+  }, 1000);
+}
+
+export function starGame() {
+  statusObj.pairsRemaining = statusObj.pairsNeed;
+  startTimer();
+
+  const matrixCardsNumbers = getRandomArrIdByNumOfCards(
+    userChoicesObj["num-of-cards"]
+  );
+  console.log(matrixCardsNumbers);
+
+  createElementsByArrAndCardsStyle(
+    matrixCardsNumbers,
+    userChoicesObj["cards-style"]
+  );
+}
+function setGridPropertyByNumOfCards(numOfCards) {
+  let rows;
+  let columns;
+  if (numOfCards === "12") {
+    rows = 3;
+    columns = 4;
+    statusObj.pairsNeed = 1;
+    statusObj.pairsRemaining = 1;
+  } else if (numOfCards === "18") {
+    rows = 3;
+    columns = 6;
+    statusObj.pairsRemaining = 9;
+  } else if (numOfCards === "24") {
+    rows = 4;
+    columns = 6;
+    statusObj.pairsRemaining = 12;
+  }
+  document.documentElement.style.setProperty("--columns", columns);
+  document.documentElement.style.setProperty("--rows", rows);
+}
+export const statusObj = {
+  cardStyle: null,
+  // open: false,
+  open: 0,
+  currentCard: null,
+  userChoice: null,
+  waiting: false,
+  turnOver: 0,
+  pairsRemaining: null,
+  pairsNeed: null,
+  score: 0,
+  scoreTwoPlayers1: 0,
+  scoreTwoPlayers2: 0,
+  unique: null,
+  playing: 1,
+  //   startGame: false,
+  //   restartGame: false,
+};
+
+function resetGame() {
+  const allCardsCollection = document.querySelectorAll(".card");
+  for (let card of allCardsCollection) {
+    card.remove();
+  }
+
+  statusObj.cardStyle = null;
+  statusObj.open = 0;
+  statusObj.currentCard = null;
+  statusObj.userChoice = null;
+  statusObj.waiting = false;
+  statusObj.turnOver = 0;
+  statusObj.pairsRemaining = 0;
+  statusObj.score = 0;
+  statusObj.unique = null;
+
+  // if(​document​.classList.contains(​'fly_card'​)) console.log("yesssss");
+  //     const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
+  //    ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
+  //    ​        ​flyCard​.​remove​(​)​;
+  //    ​    ​}
+  clearStatusBoard();
+}
+
+export function endGame() {
+  const endPage = document.querySelector(".end-page-container");
+  if (userChoicesObj["num-of-players"] === "1") {
+    endPage.querySelector(".eng-msg__header").textContent = `You did it!`;
+    endPage.querySelector(".eng-msg__time").textContent = `in 1:11 minutes`;
+    endPage.querySelector(
+      ".eng-msg__place"
+    ).textContent = `You got the 5th place in the table`;
+  } else {
+    endPage.querySelector(".eng-msg__header").textContent = `PL1 WIN!`;
+    endPage.querySelector(".eng-msg__time").textContent = `PL1 found 4 matches`;
+    endPage.querySelector(
+      ".eng-msg__place"
+    ).textContent = `PL2 found 2 matches`;
+  }
+  endPage.setAttribute("data-display", "true");
+}
+
+export function restartGame() {
+  const endPage = document.querySelector(".end-page-container");
+  if (endPage.getAttribute("data-display") === "true") {
+    endPage.setAttribute("data-display", "false");
+  }
+
+  resetGame();
+
+  setTimeout(() => {
+    starGame();
+  }, 1000);
+}
+
+export function exit() {
+  const endPage = document.querySelector(".end-page-container");
+  if (endPage.getAttribute("data-display") === "true") {
+    endPage.setAttribute("data-display", "false");
+  }
+  resetGame();
+
+  // un-display game
+  const gameContainer = document.querySelector(".game-container");
+  gameContainer.addEventListener(
+    "animationend",
+    (e) => {
+      e.target.setAttribute("data-display", "false");
+    },
+    { once: true }
+  );
+  gameContainer.setAttribute("animation", "opacity-out");
+
+  // display start game
+  const startPageMainContainer = document.querySelector(
+    ".start-page-main-container"
+  );
+  startPageMainContainer.setAttribute("animation", "opacity-in");
+  startPageMainContainer.setAttribute("data-display", "true");
+}
+
+// CLEAR STATUS BOARD
+function clearStatusBoard() {
+  const scoreStatus = document.querySelector(".winningCount");
+  scoreStatus.innerText = "00";
+  const turnOverCountStatus = document.querySelector(".turnOverCount");
+  turnOverCountStatus.innerText = "00";
+}

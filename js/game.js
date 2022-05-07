@@ -11,25 +11,30 @@ export const statusObj = {
   waiting: false,
   turnOver: 0,
   pairsRemaining: null,
+  pairsNeed: null,
   score: 0,
   scoreTwoPlayers1: 0,
   scoreTwoPlayers2: 0,
   unique: null,
   playing: 1,
-
+  //   startGame: false,
+  //   restartGame: false,
 };
-
 
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
-  if (card.getAttribute("data-unique") != statusObj.unique && statusObj.open < 2) {
+  if (
+    card.getAttribute("data-unique") != statusObj.unique &&
+    statusObj.open < 2
+  ) {
     statusObj.unique = card.getAttribute("data-unique");
     statusObj.open++;
     card.setAttribute("data-open", true);
     if (statusObj.open < 2) {
       statusObj.currentCard = card.getAttribute("data-pairNum");
-    } else { setTimeout(checkMatch, 1200, card); }
-
+    } else {
+      setTimeout(checkMatch, 1200, card);
+    }
   }
 }
 // CARD TWO CHECK MATCH//
@@ -79,7 +84,7 @@ export function addPointToTurnOver() {
 
 // CHECK SCORE
 function checkScore() {
-  if (statusObj.score === statusObj.pairsRemaining) {
+  if (statusObj.pairsRemaining === 0) {
     const newHighScoreParent = document.querySelector(".newHighScore");
     if (newHighScoreParent.childNodes.length > 0) {
       renderBestScore();
@@ -91,7 +96,6 @@ function checkScore() {
 
 //RENDER FIRST SCORE
 function renderFirstScore(newHighScoreParent) {
-  popUpWinnerMassege();
   const newDiv = document.createElement("div");
   const newScoreHeader = newDiv;
   newScoreHeader.innerHtml = `<div class="highScoresWinners highScoresTable"></div>`;
