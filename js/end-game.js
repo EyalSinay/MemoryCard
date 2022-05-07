@@ -7,23 +7,28 @@ function resetGame() {
   for (let card of allCardsCollection) {
     card.remove();
   }
-
+  const allFlyCards = document.querySelectorAll(".fly_card");
+  for (let card of allFlyCards) {
+    card.remove();
+  }
   statusObj.cardStyle = null;
   statusObj.open = 0;
   statusObj.currentCard = null;
   statusObj.userChoice = null;
-  statusObj.waiting = false;
   statusObj.turnOver = 0;
   statusObj.pairsRemaining = 0;
   statusObj.score = 0;
   statusObj.unique = null;
-
-  // if(​document​.classList.contains(​'fly_card'​)) console.log("yesssss");
-  //     const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
-  //    ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
-  //    ​        ​flyCard​.​remove​(​)​;
-  //    ​    ​}
-  clearStatusBoard();
+  (statusObj.winner = [null, null]),
+    (statusObj.playing = 1),
+    (statusObj.scoreTwoPlayers1 = 0),
+    (statusObj.scoreTwoPlayers2 = 0),
+    // if(​document​.classList.contains(​'fly_card'​)) console.log("yesssss");
+    //     const​ ​allFlyCardsCollection​ ​=​ ​document​.​querySelectorAll​(​'.fly_card'​)​;
+    //    ​    ​for​ ​(​let​  flyCard​ ​of​ ​allFlyCardsCollection​)​ ​{
+    //    ​        ​flyCard​.​remove​(​)​;
+    //    ​    ​}
+    clearStatusBoard();
 }
 
 export function endGame() {
@@ -35,8 +40,12 @@ export function endGame() {
       ".eng-msg__place"
     ).textContent = `You got the 5th place in the table`;
   } else {
-    endPage.querySelector(".eng-msg__header").textContent = `PL1 WIN!`;
-    endPage.querySelector(".eng-msg__time").textContent = `PL1 found 4 matches`;
+    endPage.querySelector(
+      ".eng-msg__header"
+    ).textContent = `${statusObj.winner[0]} WINS!`;
+    endPage.querySelector(
+      ".eng-msg__time"
+    ).textContent = `${statusObj.winner[0]} found ${statusObj.winner[1]} matches`;
     endPage.querySelector(
       ".eng-msg__place"
     ).textContent = `PL2 found 2 matches`;
@@ -89,4 +98,6 @@ function clearStatusBoard() {
   scoreStatus.innerText = "00";
   const turnOverCountStatus = document.querySelector(".turnOverCount");
   turnOverCountStatus.innerText = "00";
+  const pl1Box = (document.querySelector(".count1").innerText = 0);
+  const pl2Box = (document.querySelector(".count2").innerText = 0);
 }

@@ -1,3 +1,4 @@
+import { endGame } from "./end-game.js";
 import { userChoicesObj } from "./start-page.js";
 // import { objCards } from "./obj_cards.js";
 import { matchCardsAnimationByCardsCollection } from "./tools.js";
@@ -8,7 +9,6 @@ export const statusObj = {
   open: 0,
   currentCard: null,
   userChoice: null,
-  waiting: false,
   turnOver: 0,
   pairsRemaining: null,
   pairsNeed: null,
@@ -17,8 +17,8 @@ export const statusObj = {
   scoreTwoPlayers2: 0,
   unique: null,
   playing: 1,
-  //   startGame: false,
-  //   restartGame: false,
+  winner: [null, null],
+
 };
 
 export function handleCardClick(card) {
@@ -32,27 +32,46 @@ export function handleCardClick(card) {
     card.setAttribute("data-open", true);
     if (statusObj.open < 2) {
       statusObj.currentCard = card.getAttribute("data-pairNum");
-    } else {
-      setTimeout(checkMatch, 1200, card);
-    }
+    } else { setTimeout(checkMatch, 1000, card); }
+
   }
 }
 // CARD TWO CHECK MATCH//
 function checkMatch(card) {
+  let numOfPlayers = userChoicesObj['num-of-players'];
   if (card.getAttribute("data-pairNum") === statusObj.currentCard) {
-    statusObj.score++;
+    if (numOfPlayers > 1) {
+      if (statusObj.playing == 1) {
+        statusObj.scoreTwoPlayers1++;
+        
+      } else {
+        statusObj.scoreTwoPlayers2++;
+        
+      }
+      if (statusObj.scoreTwoPlayers1 >= statusObj.scoreTwoPlayers2) {
+        statusObj.winner[0] = userChoicesObj['player1-name'];
+        statusObj.winner[1] = statusObj.scoreTwoPlayers1;
+      }
+      else {
+        statusObj.winner[0] = userChoicesObj['player2-name'];
+        statusObj.winner[1] = statusObj.scoreTwoPlayers2;
+
+      }
+
+    }
+    else {
+      statusObj.score++;
+    }
     statusObj.open = 0;
     statusObj.pairsRemaining--;
-
     addPointToScore();
     checkScore();
-    statusObj.open = 0;
+    if (statusObj.pairsRemaining === 0) { endGame() }
     const allOpen = document.querySelectorAll("[data-open='true']");
     matchCardsAnimationByCardsCollection(allOpen);
   } else {
     statusObj.turnOver++;
     addPointToTurnOver();
-    // statusObj.score--;
     const allOpen = document.querySelectorAll("[data-open='true']");
     allOpen.forEach((e) => {
       e.setAttribute("data-open", false);
@@ -63,9 +82,25 @@ function checkMatch(card) {
 // ADD POINT TO SCORE //
 export function addPointToScore() {
   const scoreStatus = document.querySelector(".winningCount");
-  scoreStatus.innerText = statusObj.score;
-  AnimateScore(scoreStatus);
+  const player1ScoreBox = document.querySelector(".count1");
+  const player2ScoreBox = document.querySelector(".count2");
+  if (userChoicesObj['num-of-players'] === 1) {
+    scoreStatus.innerText = statusObj.score;
+    AnimateScore(scoreStatus);
+  } else {
+    if (statusObj.playing == 1) {
+      player1ScoreBox.innerText = statusObj.scoreTwoPlayers1;
+      statusObj.playing = 2;
+      AnimateScore(scoreStatus);
+
+    } else {
+      player2ScoreBox.innerText = statusObj.scoreTwoPlayers2;
+      statusObj.playing = 1;
+      AnimateScore(scoreStatus);
+    }
+  }
 }
+
 
 // ANIMATE SCORE AND TURN OVER
 function AnimateScore(StatusBoardEL) {
@@ -96,6 +131,7 @@ function checkScore() {
 
 //RENDER FIRST SCORE
 function renderFirstScore(newHighScoreParent) {
+ // popUpWinnerMassege();   //! what is this func?
   const newDiv = document.createElement("div");
   const newScoreHeader = newDiv;
   newScoreHeader.innerHtml = `<div class="highScoresWinners highScoresTable"></div>`;

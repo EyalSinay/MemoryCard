@@ -26,7 +26,7 @@
     100% {}
 }
 
-[data-display="true"] {
+[data-display="true"]*:not(.one-player) {
     display: grid;
 }
 
