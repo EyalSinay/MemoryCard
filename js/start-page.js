@@ -49,6 +49,8 @@ function setGridPropertyByNumOfCards(numOfCards) {
   }
   document.documentElement.style.setProperty("--columns", columns);
   document.documentElement.style.setProperty("--rows", rows);
+  
+  
 }
 
 function getRandomArrIdByNumOfCards(numOfCards) {
@@ -91,6 +93,10 @@ function createElementsByArrAndCardsStyle(arr, cardsStyle) {
     });
 
     board.appendChild(card);
+    console.log(userChoicesObj);
+    //! cards get smaller if user chooses game woth more cards ////
+    board.style.gridTemplateColumns = `repeat(var(--columns), ${(1/userChoicesObj["num-of-cards"])*120}vw)`;
+    board.style.gridTemplateRows = `repeat(var(--rows), ${(1/userChoicesObj["num-of-cards"])*190}vw)`;
   }
 }
 
