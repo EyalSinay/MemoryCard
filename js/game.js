@@ -79,22 +79,24 @@ function checkMatch(card) {
 }
 // ADD POINT TO SCORE //
 export function addPointToScore() {
-  const scoreStatus = document.querySelector(".winningCount");
+  const scoreStatus = document.querySelector(".countSingle");
   const player1ScoreBox = document.querySelector(".count1");
   const player2ScoreBox = document.querySelector(".count2");
 
-  if (userChoicesObj["num-of-players"] === 1) {
+  if (userChoicesObj['num-of-players'] === "1") {
+
     scoreStatus.innerText = statusObj.score;
     AnimateScore(scoreStatus);
   } else {
     if (statusObj.playing == 1) {
       player1ScoreBox.innerText = statusObj.scoreTwoPlayers1;
       statusObj.playing = 2;
-      AnimateScore(scoreStatus);
+
+      AnimateScore(player1ScoreBox);
     } else {
       player2ScoreBox.innerText = statusObj.scoreTwoPlayers2;
       statusObj.playing = 1;
-      AnimateScore(scoreStatus);
+      AnimateScore(player2ScoreBox);
     }
   }
 }
