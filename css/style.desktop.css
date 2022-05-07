@@ -5,11 +5,11 @@
 
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(var(--columns), 9vw);
-  grid-template-rows: repeat(var(--rows), 13vw);
+  /* grid-template-columns: repeat(var(--columns), 15vw);
+  grid-template-rows: repeat(var(--rows), 18vw); */
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 10px 0;
   width: 100%;
 }
 
@@ -43,6 +43,7 @@ h1 {
   margin-top: 1vh;
 }
 
+
 .game-container {
   display: grid;
   grid-template-areas: "controls1 grid1 sidebar";
@@ -58,6 +59,8 @@ h1 {
   text-align: center;
   margin: 0 auto;
   grid-area: grid1;
+  padding: 5px;
+  padding-right: 30px;
 }
 
 /* HIGH SCORE STYLE */
