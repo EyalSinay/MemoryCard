@@ -20,8 +20,6 @@ export const statusObj = {
   winner: [null, null],
 };
 
-const scoreResultArr = [];
-
 export function handleCardClick(card) {
   // OPENING CARD ONE  //
   if (
